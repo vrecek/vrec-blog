@@ -1,0 +1,126 @@
+@import '../../config';
+
+header.main-page-header {
+   height: 100vh;
+   position: relative;
+
+   section.main-page-header-text-section {
+      @include Absolute50Translate;
+      width: 80%;
+      min-width: min-content;
+      margin: 0 auto;
+      overflow: hidden;
+
+      h1 {
+         @include ClampFont(1.7, 5.8, 4.5);
+         color: $color-white;
+         font-weight: 600;
+         text-shadow: 0 0 2px red, 0 0 4px red, 0 0 8px red;
+
+         span.span-text {
+            transform: translateY(-200%);
+            display: inline-block;
+            width: max-content;
+            animation: topscrl 1.5s linear 1s;
+            animation-fill-mode: forwards;
+
+            span {
+               animation: opacity 4s linear 1.5s;
+            }
+
+            @keyframes topscrl {
+               0% { transform: translateY(-200%); }
+               100% { transform: translateY(0); }
+            }
+            @keyframes opacity {
+               0% { opacity: 0; }
+               20% { opacity: 1; }
+               40% { opacity: 0; }
+               60% { opacity: 1; }
+               80% { opacity: 0; }
+               100% { opacity: 1; }
+            }
+         }
+      }
+
+      p {
+         color: $color-white;
+         margin: 2em 0;
+         width: 50%;
+         @include ClampFont(.7, 2, 1);
+         color: $color-grey-light;
+         text-align: justify;
+         transform: translateX(-120%);
+         animation: translateLeft 1.5s ease-in-out 1s;
+         animation-fill-mode: forwards;     
+      }
+
+      section {
+         @include Flex-none-c;
+         width: 50%;
+         height: clamp(25px, 6vw, 40px);
+
+         span {
+            @include Clamp(30, 6, 40);
+            color: $color-white;
+            position: relative;
+            z-index: 9;
+
+            svg {
+               @include FullSize;
+            }
+         }
+
+         input {
+            @include FullSize;
+            background: rgba(0, 0, 0, .8);
+            border-radius: .1em;
+            outline: 0;
+            border: 2px solid $color-blue-light;
+            color: $color-grey-light;
+            font-family: 'IBM Plex Mono', monospace;
+            padding: 0 .5em;
+            @include ClampFont(.75, 2.5, 1);
+            font-weight: 400;
+            transition: .3s;
+            transform: translateX(-120%);
+            animation: translateLeft 1.5s ease-in-out 1.5s;
+            animation-fill-mode: forwards;   
+         }
+      }
+
+      @keyframes translateLeft {
+         0% { transform: translateX(-120%); }
+         100% { transform: translateX(0); }
+      }
+   }
+
+   figure {
+      @include Absolute(0,0);
+      @include FullSize;
+      overflow: hidden;
+
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   header.main-page-header {
+      section.main-page-header-text-section {
+         width: 100%;
+         padding: 0 1em;
+
+         p {
+            width: 100%;
+         }
+
+         section {
+            width: 100%;
+         }
+      }
+   }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "react_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd _FRONTEND_ && npm start",
+    "server": "cd _BACKEND_/JS && nodemon server.js",
+    "tsc": "cd _BACKEND_ && tsc"
+  },
+  "author": "vrecek",
+  "license": "ISC"
+}

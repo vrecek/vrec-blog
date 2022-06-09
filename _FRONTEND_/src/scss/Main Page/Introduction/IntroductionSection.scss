@@ -1,0 +1,83 @@
+@import '../../config';
+
+article.section-introduction {
+   height: 100vh;
+   @include Flex-sa-c;
+
+   section, figure.draw-img { width: 40%; height: 90%; }
+   
+   section {
+      @include Flex-sb-none;
+      flex-direction: column;
+
+      div.wrap {
+         height: 15%;
+
+         h1 {
+            color: $color-grey-light;
+            @include ClampFont(1.5, 4, 2.25);
+            font-weight: 200;
+         }
+   
+         p {
+            color: $color-grey-light;
+            @include ClampFont(.65, 1.5, .85);
+         }
+      }
+
+      button {
+         width: clamp(120px, 25vw, 170px);
+         padding: 1.1em 0;
+         display: block;
+         border: 0;
+         outline: 0;
+         border-radius: .25em;
+         background: rgb(59, 95, 203);
+         cursor: pointer;
+         transition: .3s;
+
+         label {
+            font-family: 'IBM Plex Mono', monospace;
+            @include ClampFont(.75, 3, 1);
+            color: $color-white;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 0 0 1px black;
+            transition: .3s;
+            display: block;
+         }
+
+         &:hover {
+            background: $color-blue-dark;
+            box-shadow: 0 0 4px $color-blue-dark, 0 0 8px $color-blue-dark;
+            label { transform: scale(1.1); }
+         }
+      }
+   }
+
+   figure.draw-img {
+      overflow: hidden;
+      @include Flex-c-c;
+
+      img {
+         width: 100%;
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   article.section-introduction {
+      padding: 2em 1em;
+      height: auto;
+
+      section {
+         width: 100%;
+
+         div.wrap { h1 { margin-bottom: 1em; } }
+      }
+
+      figure.draw-img {
+         display: none;
+      }
+   }
+}
