@@ -3,6 +3,7 @@
 article.section-introduction {
    height: 100vh;
    @include Flex-sa-c;
+   background: $background-dark-1;
 
    section, figure.draw-img { width: 40%; height: 90%; }
    

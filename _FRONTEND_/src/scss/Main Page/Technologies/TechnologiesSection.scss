@@ -1,0 +1,130 @@
+@import '../../config';
+
+article.technologies-section {
+   padding: 3em 0;
+   background: $background-dark-2;
+   @include Flex-sa-c;
+
+   section.text {
+      width: 450px;
+      
+      h1 {
+         font-family: 'IBM Plex Mono', monospace;
+         @include ClampFont(1.2, 3, 2);
+         font-weight: 400;
+         color: $color-white;
+         border-bottom: 1px solid $color-grey-light;
+      }
+
+      p {
+         margin-top: .5em;
+         color: $color-grey-darker;
+         font-weight: 100;
+         @include ClampFont(.75, 1.5, .85);
+         animation: hue 10s linear infinite;
+         text-shadow: 0 0 1px $color-blue-light;
+
+         @keyframes hue {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+         }
+      }
+   }
+
+   section.cards {
+      width: 50%;
+      @include Flex-sa-c;
+      flex-wrap: wrap;
+
+      $colors: (
+         1: 'gold',
+         2: 'royalblue',
+         3: 'orangered',
+         4: 'royalblue',
+         5: 'crimson',
+         6: 'cornflowerblue',
+         7: 'green',
+         8: 'lightgreen'
+      );
+      
+      article {
+         width: 150px;
+         aspect-ratio: 1;
+         border: 1px solid $color-grey-darker;
+         margin: 1em .25em;
+         @include Flex-sa-c;
+         flex-direction: column;
+         border-radius: .5em;
+         background: linear-gradient(#181818, #212121);
+         cursor: pointer;
+         position: relative;
+         overflow: hidden;
+
+         @each $i, $x in $colors {
+            &:nth-child(#{ $i }) {
+               figure {
+                  color: #{ $x };
+               }
+            }
+         }
+
+         figcaption {
+            color: $color-grey-light;
+            text-transform: uppercase;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            transition: .3s;
+            @include ClampFont(.85, 3, 1);
+         }
+         
+         figure {
+            width: 50%;
+            height: 50%;
+            overflow: hidden;
+            border: 1px solid $color-grey-dark;
+            border-radius: 50%;
+            @include Flex-c-c;
+            transition: .3s;
+
+            svg {
+               width: 60%;
+               height: 60%;
+            }
+         }
+
+         &:hover {
+            figure {
+               border-color: transparent;
+               transform: scale(2);
+            }
+
+            figcaption { transform: translateY(200%); }
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   article.technologies-section {
+      flex-direction: column-reverse;
+
+      section.text {
+         width: 90%;
+         margin-bottom: 1em;
+      }
+
+      section.cards {
+         width: 100%;
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   article.technologies-section {
+      section.cards {
+         article {
+            width: 120px;
+         }
+      }
+   }
+}

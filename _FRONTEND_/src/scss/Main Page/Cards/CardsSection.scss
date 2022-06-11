@@ -1,0 +1,146 @@
+@import '../../config';
+
+article.cards-section {
+   background: $background-dark-1;
+   height: 100vh;
+   overflow: hidden;
+   padding: 2em 0;
+   @include Flex-sa-c;
+   position: relative;
+
+   div.back {
+      position: absolute;
+      left: -5%;
+      top: 50%;
+      width: 150%;
+      height: 70%;
+      background: #131313;
+      border-radius: 0 5em 5em 0;
+      transform: translateY(-50%) rotate(-15deg);
+   }
+
+   div.line {
+      width: 1px;
+      height: 100%;
+      background: #101010;
+      z-index: 5;
+   }
+
+   section.text {
+      width: 40%;
+      z-index: 5;
+      background: #161616;
+      border-radius: .5em;
+      padding: 1em;
+
+      div.paragraphs {
+         margin: 2em 0 3em 0;
+
+         p {
+            color: $color-grey-darker;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 200;
+            @include ClampFont(.8, 3, 1);
+   
+            span {
+               color: $color-blue-light;
+               font-weight: 600;
+            }
+         }
+      }
+
+      button {
+         height: 50px;
+         width: 150px;
+         outline: 0;
+         border: 0;
+         border-radius: .2em;
+         background: none;
+         cursor: pointer;
+         border: 2px solid #505050;
+         position: relative;
+
+         span {
+            div { display: none; }
+            display: block;
+            width: 100%;
+            height: 100%;
+            @include Absolute(0, 0);
+
+            &::before,
+            &::after {
+               content: '';
+               position: absolute;
+               background: #161616;
+               transition: .5s;
+            }
+
+            &::before {
+               top: 50%;
+               transform: translateY(-50%);
+               left: -2px;
+               width: calc(100% + 4px);
+               height: 70%;
+            }
+
+            &::after {
+               width: 80%;
+               height: calc(100% + 4px);
+               left: 50%;
+               transform: translateX(-50%);
+               top: -2px;
+            }
+         }
+
+         label {
+            color: $color-blue-light;
+            font-weight: 500;
+            display: block;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+            z-index: 99;
+            position: relative;
+            transition: .3s;
+            transition-delay: .3s;
+         }
+
+         &:hover {
+            span {
+               &::before {
+                  transform: translateY(-50%) scaleY(0);
+               }
+               &::after {
+                  transform: translateX(-50%) scaleX(0);
+               }
+            }
+
+            label {
+               text-shadow: 0 0 2px $color-blue-dark, 0 0 4px $color-blue-dark;
+            }
+         }
+      }
+
+      h1 {
+         color: $color-grey-light;
+         text-transform: uppercase;
+         @include ClampFont(1.25, 3, 2);
+         font-weight: 700;
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   article.cards-section {
+      div.line { display: none; }
+
+      height: auto;
+      flex-direction: column;
+
+      section.text {
+         width: 100%;
+         @include Flex-c-c;
+         flex-direction: column;
+         margin-bottom: 2em;
+      }
+   }
+}

@@ -3,6 +3,7 @@ import s1 from '../../../images/slider1.jpg'
 import s2 from '../../../images/slider2.jpg'
 import s3 from '../../../images/slider3.jpg'
 import '../../../css/IntroductionSlider.css'
+import IntroductionSliderRadios from './IntroductionSliderRadios'
 
 const IntroductionSlider = () => {
    const imageRef = React.useRef<HTMLDivElement>(null)
@@ -41,12 +42,12 @@ const IntroductionSlider = () => {
       interval = setInterval(() => intervalFunc(current!, radioCont, radioCont.length), 4000)
    }
 
-   // React.useEffect(() => {
-   //    const { current } = imageRef
-   //    const radioCont: HTMLElement[] = Array.from( current!.parentElement!.children[1].children as HTMLCollectionOf<HTMLElement> )
+   React.useEffect(() => {
+      const { current } = imageRef
+      const radioCont: HTMLElement[] = Array.from( current!.parentElement!.children[1].children as HTMLCollectionOf<HTMLElement> )
 
-   //    interval = setInterval(() => intervalFunc(current!, radioCont, radioCont.length), 4000)
-   // }, [])
+      interval = setInterval(() => intervalFunc(current!, radioCont, radioCont.length), 4000)
+   }, [])
 
    return (
       <figure className='introduction-slider'>
@@ -57,17 +58,7 @@ const IntroductionSlider = () => {
             <img src={ s3 } alt='slider' />
          </div>
 
-         <div className='radios'>
-            {
-               [...Array(3)].map((x, i) => (
-                  <span 
-                     className={ i === 0 ? 'active' : '' } 
-                     key={ i } 
-                     onClick={ (e) => changeSlider(e, i) }>
-                  </span>
-               ))
-            }
-         </div>
+         <IntroductionSliderRadios changeSlider={ changeSlider } />
       </figure>
    )
 }

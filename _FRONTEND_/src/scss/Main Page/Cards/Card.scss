@@ -1,0 +1,145 @@
+@import '../../config';
+
+section.card-container {
+   width: clamp(450px, 40vw, 610px);
+   z-index: 5;
+   @include Flex-sb-c;
+   flex-wrap: wrap;
+   height: 100%;
+
+   article.card {
+      border-radius: .5em;
+      background: #222222;
+      width: 40%;
+      min-width: 220px;
+      height: 45%;
+      @include Flex-sb-c;
+      flex-direction: column;
+
+      p {
+         font-size: .7rem;
+         color: #8d8d8d;
+         text-align: center;
+      }
+
+      div.card-text {
+         width: 100%;
+         text-align: center;
+
+         h1 {
+            text-transform: uppercase;
+            font-weight: 400;
+            font-family: 'IBM Plex Mono', monospace;
+            color: $color-grey-darker;
+            margin-bottom: .5em;
+            font-size: .85rem;
+         }
+
+         h2 {
+            font-weight: 100;
+            color: $color-grey-light;
+         }
+      }
+
+      button {
+         padding: .5em 0;
+         width: 40%;
+         outline: 0;
+         border: 1px solid royalblue;
+         background: none;
+         border-radius: .25em;
+         cursor: pointer;
+         transition: .3s;
+
+         label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: royalblue;
+            transition: .3s;
+         }
+
+         &:hover {
+            background: royalblue;
+            label { color: $color-white; }
+         }
+      }
+
+      span {
+         margin-top: .5em;
+         width: 45px;
+         height: 45px;
+
+         svg {
+            color: royalblue;
+            filter: drop-shadow(0 0 1px $color-blue-light);
+            @include FullSize;
+         }
+      }
+
+      section {
+         width: 100%;
+         background: #292929;
+         @include Flex-sb-c;
+         color: $color-grey-light;
+
+         div {
+            width: 50%;
+            height: 100%;
+            padding: .25em 0;
+            @include Flex-c-c;
+            flex-direction: column;
+            position: relative;
+            
+            &::before,
+            &::after {
+               position: absolute;
+               z-index: -1;
+               top: 0;
+               left: 0;
+               width: 100%;
+               background: rgb(48, 83, 188);
+               font-weight: 500;
+               padding: .25em 0;
+               color: $color-white;
+               font-size: .75rem;
+               text-align: center;
+               pointer-events: none;
+               opacity: 0;
+               transition: .3s;
+            }
+           
+            &.total {
+               &::before { content: 'Total articles'; }
+            }
+            &.date {
+               &::before { content: 'Last uploaded'; }
+            }
+
+            &:hover {
+               &::before {
+                  opacity: 1;
+                  top: 100%;
+               }
+            }
+
+            h6 {
+               font-weight: 500;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   section.card-container {
+      width: 100%;
+      justify-content: space-around;
+
+      article.card {
+      
+         height: 310px;
+         margin: 0 .5em;
+         margin-bottom: 2em;
+      }
+   }
+}
