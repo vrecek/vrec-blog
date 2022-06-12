@@ -1,0 +1,172 @@
+@import '../../config';
+
+article.article-section {
+   position: relative;
+   background: $background-dark-2;
+   display: flex;
+
+   aside {
+      width: 21%;
+      min-width: 14em;
+      height: calc(100vh - 130px);
+      margin: 2em 0;
+      position: sticky;
+      top: calc(66px + 2em);
+      border-right: 1px solid #606060;
+      padding : 2em;
+      @include Flex-c-c;
+      flex-direction: column;
+
+      div {
+         margin-bottom: 5em;
+
+         h2 {
+            color: $color-white;
+            margin-bottom: .5em;
+            font-weight: 600;
+         }
+
+         ul {
+            padding-left: 2em;
+            color: $color-grey-light;
+            list-style: none;
+
+            li {
+               margin-bottom: .25em;
+               font-size: .9rem;
+               transition: .3s;
+               cursor: pointer;
+               font-weight: 400;
+
+               &:hover {
+                  color: $color-blue-light;
+               }
+            }
+         }
+      }
+   }
+
+   section.container {
+      width: 79%;
+      padding: 2em 0;
+      @include Flex-c-none;
+      flex-direction: column;
+      margin-bottom: 2em;
+
+      section.pagination {
+         width: 100%;
+         background: #252525;
+         @include Flex-c-c;
+
+         div {
+            @include Clamp(30, 8, 45);
+            background: #121212;
+            @include Flex-c-c;
+            border-radius: .25em;
+            color: $color-white;
+            margin: 0 .25em;
+            font-weight: 600;
+            cursor: pointer;
+            @include ClampFont(.75, 4, 1);
+
+            &.active {
+               pointer-events: none;
+               background: rgb(212, 58, 3);
+            }
+         }
+      }
+
+      article.article {
+         background: #202020;
+         margin-bottom: 3em;
+         width: 70%;
+         min-width: 32em;
+         max-width: 100%;
+         border-radius: .25em;
+         padding: 1em;
+         cursor: pointer;
+         transition: .3s;
+
+         h4 {
+            text-align: right;
+            margin-top: 1em;
+            color: $color-white;
+            @include ClampFont(.65, 3, .7);
+         }
+
+         h1 {
+            margin: .75em 0 .25em 0;
+            color: $color-white;
+            font-weight: 600;
+            @include ClampFont(1, 4, 1.5);
+         }
+
+         p {
+            @include ClampFont(.6, 3, .7);
+            color: $color-grey-darker;
+         }
+
+         section.tags {
+            display: flex;
+            align-items: center;
+
+            span {
+               margin-right: .5em;
+               background: #151515;
+               border-radius: .25em;
+               border: 1px solid #404040;
+               padding: .25em .5em;
+               @include ClampFont(.6, 3, .8);
+               color: $color-white;
+               font-family: 'IBM Plex Mono', monospace;
+            }
+
+            h5 {
+               margin-right: 1em;
+               color: $color-grey-darker;
+               font-weight: 400;
+               @include ClampFont(.75, 3, 1);
+            }
+         }
+
+         &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 2px $color-blue-dark;
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   article.article-section {
+      aside {
+         display: none;
+      }
+
+      section.container {
+         width: 100%;
+
+         article.article {
+            width: 98%;
+            min-width: auto;
+         }
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   article.article-section {
+      section.container {
+         article.article {
+            section.tags {
+               flex-direction: column;
+               align-items: flex-start;
+
+               div {
+                  margin-top: .5em;
+               }
+            }
+         }
+      }
+   }
+}

@@ -30,6 +30,7 @@ figure.introduction-slider {
          &.active {
             background: $color-blue-dark;
             pointer-events: none;
+            transform: scale(1.2);
          }
       }
    }

@@ -8,17 +8,6 @@ article.cards-section {
    @include Flex-sa-c;
    position: relative;
 
-   div.back {
-      position: absolute;
-      left: -5%;
-      top: 50%;
-      width: 150%;
-      height: 70%;
-      background: #131313;
-      border-radius: 0 5em 5em 0;
-      transform: translateY(-50%) rotate(-15deg);
-   }
-
    div.line {
       width: 1px;
       height: 100%;

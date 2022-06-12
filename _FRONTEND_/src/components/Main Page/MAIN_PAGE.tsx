@@ -1,4 +1,5 @@
 import React from 'react'
+import ArticlesSection from './AllArticles/ArticlesSection'
 import Cards from './Cards/Cards'
 import MainHeader from './Header/MainHeader'
 import Introduction from './Introduction/Introduction'
@@ -15,6 +16,8 @@ const MAIN_PAGE = () => {
          <Technologies />
 
          <Cards />
+
+         <ArticlesSection />
          
       </main>
    )

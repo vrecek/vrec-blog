@@ -1,0 +1,87 @@
+@import '../config';
+
+footer.layout-footer {
+   background: #121212;
+   padding: 4em .5em 0 .5em;
+   
+   ul {
+      list-style: none;
+
+      li.li-header {
+         text-transform: uppercase;
+         font-weight: 600;
+         color: $color-white;
+         margin-bottom: .5em;
+         @include ClampFont(.7, 2, 1.5);
+      }
+
+      li.li-link {
+         a {
+            text-decoration: none;
+            color: $color-grey-darker;
+            font-weight: 400;
+            @include ClampFont(.65, 1.5, 1);
+         }
+      }
+   }
+
+   section.main-section {
+      @include Flex-sa-none;
+   }
+
+   div {
+      margin-left: 4.5em;
+      display: flex;
+      padding: 2.5em 0;
+
+      span {
+         margin-right: 1em;
+         @include Clamp(25, 4, 40);
+
+         svg {
+            @include FullSize;
+            color: $color-grey-light;
+         }
+      }
+   }
+
+   ul.normal-ul {
+      width: 15%;
+   }
+
+   section.bar {
+      width: 100%;
+      background: #0d0d0d;
+      padding: 1em 0;
+
+      p {
+         text-align: center;
+         font-weight: 100;
+         color: $color-white;
+         @include ClampFont(.7, 3, 1);
+      }
+   }
+
+   figure {
+      width: 15%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+
+      img {
+         width: 100%;
+         @include Absolute50Translate;
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   footer.layout-footer {
+      figure { display: none; }
+
+      div {
+         margin-left: 0;
+         @include Flex-c-c;
+      }
+   }
+}
