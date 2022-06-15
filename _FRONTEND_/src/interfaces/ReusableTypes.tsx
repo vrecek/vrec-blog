@@ -13,6 +13,7 @@ export interface InputTextType {
    type: InputType,
    handlerType: InputActionType,
    placeholder?: string,
+   defaultVal?: string,
    blur?: React.FocusEventHandler,
    focus?: React.FocusEventHandler,
    handler?: (e: any) => void,
@@ -29,4 +30,9 @@ export interface ButtonType {
    action: React.MouseEventHandler,
    cname?: string,
    additional?: any,
+}
+
+export interface ArticlePostdateType {
+   children: string,
+   preText?: string
 }

@@ -17,3 +17,8 @@ export interface OneCardInfoType {
    icon: JSX.Element,
    text: number | string
 }
+
+export interface LastUpdated {
+   category: string,
+   when: string
+}

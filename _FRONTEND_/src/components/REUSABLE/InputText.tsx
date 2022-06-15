@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputTextType } from '../../interfaces/ReusableTypes'
 
-const InputText = ({ handler, blur, focus, handlerType, type, placeholder }: InputTextType) => {
+const InputText = ({ handler, blur, focus, handlerType, type, placeholder, defaultVal }: InputTextType) => {
    const empty = () => {}
 
    if(handlerType === 'onchange')
@@ -13,6 +13,7 @@ const InputText = ({ handler, blur, focus, handlerType, type, placeholder }: Inp
          type={ type } 
          spellCheck='false'
          placeholder={ placeholder ?? '' } 
+         defaultValue={ defaultVal ?? '' }
       />
    )
 
@@ -27,6 +28,7 @@ const InputText = ({ handler, blur, focus, handlerType, type, placeholder }: Inp
          type={ type } 
          spellCheck='false'
          placeholder={ placeholder ?? '' } 
+         defaultValue={ defaultVal ?? '' }
       />
    )
 

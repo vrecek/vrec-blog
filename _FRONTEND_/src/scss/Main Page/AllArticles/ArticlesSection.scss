@@ -1,6 +1,7 @@
 @import '../../config';
 
-article.article-section {
+article.article-section,
+main.search-page-container {
    position: relative;
    background: $background-dark-2;
    display: flex;
@@ -8,7 +9,7 @@ article.article-section {
    aside {
       width: 21%;
       min-width: 14em;
-      height: calc(100vh - 130px);
+      height: calc(100vh - 145px);
       margin: 2em 0;
       position: sticky;
       top: calc(66px + 2em);
@@ -68,10 +69,15 @@ article.article-section {
             font-weight: 600;
             cursor: pointer;
             @include ClampFont(.75, 4, 1);
+            transition: .3s;
 
             &.active {
                pointer-events: none;
                background: rgb(212, 58, 3);
+            }
+
+            &:hover {
+               background: royalblue;
             }
          }
       }
@@ -138,7 +144,8 @@ article.article-section {
 }
 
 @media (max-width: 768px) {
-   article.article-section {
+   article.article-section,
+   main.search-page-container {
       aside {
          display: none;
       }
@@ -155,7 +162,8 @@ article.article-section {
 }
 
 @media (max-width: 480px) {
-   article.article-section {
+   article.article-section,
+   main.search-page-container {
       section.container {
          article.article {
             section.tags {

@@ -21,32 +21,43 @@ footer.layout-footer {
             color: $color-grey-darker;
             font-weight: 400;
             @include ClampFont(.65, 1.5, 1);
+            transition: .3s;
+
+            &:hover {
+               color: $color-grey-dark;
+            }
          }
       }
    }
 
+   section.main-section,
+   div { width: 90%; margin: 0 auto; }
+
    section.main-section {
-      @include Flex-sa-none;
+      @include Flex-sb-none;
    }
 
    div {
-      margin-left: 4.5em;
       display: flex;
       padding: 2.5em 0;
 
       span {
          margin-right: 1em;
          @include Clamp(25, 4, 40);
+         transition: .3s;
+         cursor: pointer;
 
          svg {
             @include FullSize;
             color: $color-grey-light;
+            transition: .3s;
+         }
+
+         &:hover {
+            transform: scale(1.1);
+            svg { color: $color-grey-darker; }
          }
       }
-   }
-
-   ul.normal-ul {
-      width: 15%;
    }
 
    section.bar {
@@ -80,7 +91,8 @@ footer.layout-footer {
       figure { display: none; }
 
       div {
-         margin-left: 0;
+         width: 100%;
+         margin: 0;
          @include Flex-c-c;
       }
    }

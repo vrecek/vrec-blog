@@ -1,0 +1,188 @@
+@import '../config';
+
+section.comment-section {
+   h2.article-end-header {
+      padding-top: 2em;
+   }
+
+   h1.not-logged {
+      text-transform: uppercase;
+      color: $color-grey-light;
+      font-weight: 700;
+      @include ClampFont(1, 4, 1.5);
+      padding: .8em 0 2em 0;
+      text-align: center;
+   }
+
+   h1.no-comments {
+      text-transform: uppercase;
+      color: $color-grey-light;
+      font-weight: 600;
+      @include ClampFont(.85, 3, 1);
+   }
+
+   form {
+      width: 650px;
+      max-width: 100%;
+
+      section {
+         &.user-info {
+            display: flex;
+
+            div {
+               @include Flex-sb-none;
+               flex-direction: column;
+               padding-left: .75em;
+
+               h4.username {
+                  font-weight: 700;
+                  @include ClampFont(.8, 3, .9);
+                  color: $color-white;
+               }
+
+               h4.postdate-component {
+                  color: $color-grey-light;
+                  font-size: .8rem;
+
+                  span {
+                     font-weight: 500;
+
+                     &.info-text {
+                        margin-right: .5em;
+                        text-transform: uppercase;
+                     }
+                  }
+               }
+            }
+
+            figure {
+               width: clamp(50px, 15vw, 60px);
+               aspect-ratio: 1;
+               overflow: hidden;
+               border-radius: .2em;
+               position: relative;
+
+               img {
+                  height: 100%;
+                  @include Absolute50Translate;
+               }
+            }
+         }
+
+         &.textarea {
+            margin-top: .5em;
+
+            textarea {
+               width: 100%;
+               height: clamp(150px, 50vw, 200px);
+               border-radius: .15em;
+               background: none;
+               outline: 0;
+               border: 2px solid #505050;
+               resize: none;
+               background: #202020;
+               padding: 1em;
+               color: $color-white;
+               @include ClampFont(.85, 4, 1);
+            }
+
+            button {
+               margin: 0 0 0 auto;
+               display: block;
+               padding: clamp(.5em, 3vw, 1em) 0;
+               width: clamp(100px, 35vw, 125px);
+               outline: 0;
+               border: 0;
+               border-radius: .25em;
+               background: royalblue;
+               cursor: pointer;
+               transition: .3s;
+
+               label {
+                  font-weight: 600;
+                  color: $color-white;
+                  font-family: 'Poppins', sans-serif;
+                  @include ClampFont(.75, 2, .83);
+               }
+
+               &:hover {
+                  background: $color-blue-dark;
+                  box-shadow: 0 0 4px $color-blue-light;
+               }
+            }
+         }
+      }
+   }
+
+   article.comment {
+      &:first-child { margin-top: 3em; }
+
+      &:not(:last-child) {
+         margin-bottom: 5em;
+      }
+
+      article.text {
+         background: #252525;
+         padding: 1em;
+         border-radius: 0 .2em .2em .2em;
+         font-size: .9rem;
+         color: $color-grey-light;
+         min-height: 225px;
+         
+         p {
+            @include ClampFont(.75, 3, .9);
+         }
+
+         @media (max-width: 768px) {
+            & {
+               min-height: auto;
+            }
+         }
+      }
+
+      section.user {
+         display: flex;
+
+         figure {
+            width: clamp(65px, 20vw, 85px);
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+
+            img {
+               height: 100%;
+               @include Absolute50Translate;
+            }
+         }
+
+         div.text-info {
+            margin-left: .75em;
+            @include Flex-sa-none;
+            width: 80%;
+            flex-direction: column;
+            color: $color-white;
+
+            h4.username {
+               font-weight: 600;
+               @include ClampFont(.9, 4, 1);
+            }
+
+            h4.postdate-component {
+               @include ClampFont(.7, 3, .8);
+
+               span {
+                  &.info-text {
+                     margin-right: .5em;
+                     font-weight: 400;
+                     font-family: 'IBM Plex Mono', monospace;
+                  }
+
+                  &.date {
+                     font-weight: 600;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

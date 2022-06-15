@@ -1,5 +1,4 @@
-// font-family: 'Poppins', sans-serif;
-// font-family: 'IBM Plex Mono', monospace;
+@import './config';
 
 * {
    margin: 0;
@@ -7,6 +6,10 @@
    box-sizing: border-box;
    font-weight: 300;
    scroll-behavior: smooth;
+}
+
+div.App {
+   // overflow-x: hidden;
 }
 
 body {
@@ -36,5 +39,28 @@ body {
       background: #131313;
       border-radius: 0 5em 5em 0;
       transform: translateY(-50%) rotate(-15deg);
+   }
+
+   div.layout-arrow-scroll {
+      position: fixed;
+      right: 5px;
+      bottom: 5px;
+      @include Clamp(25, 8, 35);
+      background: #353535;
+      border-radius: .25em;
+      cursor: pointer;
+      opacity: 0;
+      transition: .5s;
+
+      svg {
+         @include FullSize;
+         color: $color-grey-light;
+         transition: .3s;
+      }
+
+      &:hover {
+         background: #454545;
+         svg { transform: rotate(360deg); }
+      }
    }
 }

@@ -1,16 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Hashtag from '../../../REUSABLE/Hashtag'
+import ArticleTags from './ArticleTags'
 
 const OneArticle = () => {
-   return (
-      <article className='article'>
-         <section className='tags'>
-            <h5># loremipsum</h5>
+   const n = useNavigate()
 
-            <div>
-               <span>Lorefdsm</span>
-               <span>Lorem fsd</span>
-               <span>Lorem</span>
-            </div>
+   return (
+      <article className='article' onClick={ () => n('/article/dummy-title') }>
+         <section className='tags'>
+            <Hashtag>loremipsum</Hashtag>
+
+            <ArticleTags />
          </section>
 
          <h1>Lorem ipsum dolor sit amet conestaur</h1>

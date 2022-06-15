@@ -6,6 +6,8 @@ import Introduction from './Introduction/Introduction'
 import Technologies from './Technologies/Technologies'
 
 const MAIN_PAGE = () => {
+   window.scrollTo(0, 0)
+
    return (
       <main className='main-page-container'>
 

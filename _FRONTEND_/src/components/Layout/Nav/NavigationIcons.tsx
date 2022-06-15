@@ -1,11 +1,15 @@
 import React from 'react'
 import { BiSearch } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
+import NavigateClass from '../../../functions/NavigateClass'
 import Icon from '../../REUSABLE/Icon'
 import NavigationHiddenMenu from './NavigationHiddenMenu'
 import NavigationMenu from './NavigationMenu'
 
 const NavigationIcons = () => {
+   const navigate = useNavigate()
    const hiddenMenuRef = React.useRef<HTMLDivElement>(null)
+   const nc = new NavigateClass()
 
    const showInput = (appendTo: HTMLElement, input: HTMLInputElement) => {
       appendTo.appendChild(input)
@@ -42,6 +46,11 @@ const NavigationIcons = () => {
       input.type = 'text'
       input.placeholder = 'Search...'
       input.spellcheck = false
+      input.addEventListener( 'keydown', (e) => {
+         const url: string = `/search/b/${ input.value }`
+
+         nc.searchNavigateEnter( e, navigate, url.replaceAll(' ', '-'), () => hideInput(input, 300) )
+      })
 
       showInput(targetDiv, input)
    }

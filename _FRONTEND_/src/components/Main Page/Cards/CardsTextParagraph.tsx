@@ -1,10 +1,11 @@
 import React from 'react'
+import { LastUpdated } from '../../../interfaces/CardInterface'
 
-const CardsTextParagraph = () => {
+const CardsTextParagraph = ({ category, when }: LastUpdated) => {
    return (
       <div className='paragraphs'>
-         <p>Last updated: <span>today</span></p>
-         <p>From category: <span>loremipsum</span></p>
+         <p>Last updated: <span>{ when }</span></p>
+         <p>From category: <span>{ category }</span></p>
       </div>
    )
 }

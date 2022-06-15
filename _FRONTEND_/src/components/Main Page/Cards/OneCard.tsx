@@ -1,12 +1,15 @@
 import React from 'react'
 import { AiOutlineNumber } from 'react-icons/ai'
 import { MdUpdate } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import { CardType } from '../../../interfaces/CardInterface'
 import Button from '../../REUSABLE/Button'
 import OneCardInfo from './OneCardInfo'
 import OneCardText from './OneCardText'
 
 const OneCard = ({ icon, smallText, bigText, paraText, total, lastUpload }: CardType) => {
+   const n = useNavigate()
+
    return (
       <article className="card">
          
@@ -16,7 +19,7 @@ const OneCard = ({ icon, smallText, bigText, paraText, total, lastUpload }: Card
 
          <p>{ paraText }</p>
 
-         <Button text='Browse' action={ () => {} } />
+         <Button text='Browse' action={ () => n(`/search/c/${ bigText }`) } />
 
          <section>
 

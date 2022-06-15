@@ -1,0 +1,138 @@
+@import '../config';
+
+section.related-topics-section {
+   section.topics-container {
+      margin-bottom: 5em;
+   }
+
+   article {
+      display: flex;
+      background: #202020;
+      border-radius: .5em;
+      height: 120px;
+      padding: .5em;
+
+      &:not(:last-child) {
+         margin-bottom: 2em;
+      }
+      
+      section {
+         width: 100%;
+         padding: 0 .5em;
+         display: flex;
+
+         div {
+            &.info-1 {
+               @include Flex-sb-none;
+               flex-direction: column;
+               width: 100%;
+            }
+
+            &.info-2 {
+               display: flex;
+               flex-direction: column;
+               align-items: flex-end;
+               justify-content: space-between;
+               width: max-content;
+
+               div.tags {
+                  width: 100%;
+                  display: flex;
+                  justify-content: flex-end;
+
+                  span {
+                     padding: .25em .5em;
+                     background: #353535;
+                     border-radius: .2em;
+                     margin-left: .5em;
+                     @include ClampFont(.65, 1.25, .8);
+                     color: $color-grey-light;
+                     font-weight: 500;
+                  }
+               }
+            }
+         }
+
+         h5.hashtag-component {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            color: $color-grey-darker;
+            @include ClampFont(.7, 2.5, .9);
+         }  
+
+         h4.postdate-component {
+            color: $color-grey-light;
+            @include ClampFont(.7, 1.25, .8);
+
+            span { 
+               font-weight: 600; 
+               text-transform: uppercase; 
+
+               &.info-text { margin-right: .5em; }
+            }
+         }
+
+         a.title-link {
+            color: darken($color: $color-white, $amount: 5%);
+            font-weight: 500;
+            @include ClampFont(.8, 1.8, 1.2);
+            text-decoration: none;
+            transition: .3s;
+
+            &:hover {
+               color: $color-blue-light;
+               transform: translateX(2.5%);
+            }
+         }
+      }
+
+      figure {
+         height: 100%;
+         width: 20%;
+         min-width: 110px;
+         overflow: hidden;
+         background: red;
+         position: relative;
+
+         img {
+            height: 100%;
+            @include Absolute50Translate;
+         }
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   section.related-topics-section {
+      article {
+         height: auto;
+
+         figure { display: none; }
+
+         section {
+            flex-direction: column;
+
+            h4.postdate-component {
+               margin-top: 1em;
+               font-size: .6rem;
+            }
+
+            div { 
+               &.info-2 { 
+                  width: 100%;
+                  flex-direction: row;
+
+                  div.tags {
+                     width: max-content;
+                  }
+               } 
+
+               &.info-1 {
+                  width: 100%;
+                  margin-bottom: 1em;
+               }
+            }
+         }
+      }
+   }
+}

@@ -1,16 +1,19 @@
 import React from 'react'
 import { AiOutlineHome } from 'react-icons/ai'
 import { BiLogIn } from 'react-icons/bi'
-import { CgBrowse } from 'react-icons/cg'
+import { FiUserPlus } from 'react-icons/fi'
+import NavigationListLi from './NavigationListLi'
 
 const NavigationList = () => {
    return (
       <section className='layout-nav-list'>
          <ul>
-            <li> <h5>Home</h5> <span> <AiOutlineHome /> </span> </li>
-            <li> <h5>Browse</h5> <span> <CgBrowse /> </span> </li>
+            <NavigationListLi text='Home' url='/' icon={ <AiOutlineHome /> } />
+
             <li className='line'></li>
-            <li className='sign-in'> <h5>Sign_in</h5> <span> <BiLogIn /> </span> </li>
+
+            <NavigationListLi cname='register' text='Register' url='/' icon={ <FiUserPlus /> } />
+            <NavigationListLi cname='sign-in' text='Log_in' url='/' icon={ <BiLogIn /> } />
          </ul>
       </section>
    )

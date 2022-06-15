@@ -6,7 +6,8 @@ nav.layout-nav {
    top: 0;
    width: 100%;
    color: $color-white;
-   z-index: 9;
+   z-index: 95;
+   height: 60px;
    @include Flex-sb-c;
    padding: 1.25em clamp(.5em, 6vw, 2em);
    transition: .3s;
@@ -42,14 +43,18 @@ nav.layout-nav {
                pointer-events: none;
             }
 
-            &.sign-in {
-               color: $color-grey-light;
+            a { text-decoration: none; color: $color-white; }
 
+            &.register,
+            &.sign-in {
                h5 {        
                   font-family: 'IBM Plex Mono', monospace; 
                   font-size: clamp(.65rem, 3vw, .9rem); 
                }
             }
+
+            &.register { a { color: orangered; } }
+            &.sign-in { a { color: $color-grey-light; } }
 
             &:hover {
                h5 {

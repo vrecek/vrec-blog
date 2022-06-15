@@ -6,8 +6,13 @@ import HeaderTitle from './HeaderTitle'
 import { HiOutlineDocumentSearch } from 'react-icons/hi'
 import FigureImage from '../../REUSABLE/FigureImage'
 import background from '../../../images/main_header.png'
+import NavigateClass from '../../../functions/NavigateClass'
+import { useNavigate } from 'react-router-dom'
 
 const MainHeader = () => {
+   const navigate = useNavigate()
+   const nc = new NavigateClass()
+
    const onFocus = (e: React.FocusEvent) => {
       const t = e.target as HTMLInputElement  
       t.style.borderColor = 'rgb(26, 52, 131)'
@@ -20,6 +25,12 @@ const MainHeader = () => {
       if(!value) {
          t.style.borderColor = 'rgb(96, 136, 255)'
       }
+   }
+
+   const searchQuery = (e: React.KeyboardEvent) => {
+      const t = e.target as HTMLInputElement
+      
+      nc.searchNavigateEnter(e, navigate, `/search/b/${ t.value }`)
    }
 
    return (
@@ -36,6 +47,7 @@ const MainHeader = () => {
             <section className='search-input'>
                <span> <HiOutlineDocumentSearch /> </span>
                <InputText 
+                  handler={ searchQuery }
                   handlerType='onkeydown' 
                   focus={ onFocus }
                   blur={ onBlur }

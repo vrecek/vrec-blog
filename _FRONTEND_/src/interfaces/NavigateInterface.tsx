@@ -3,3 +3,10 @@ export interface NavigationMenuLiType {
    route: string,
    icon: JSX.Element
 }
+
+export interface NavigationListLiType {
+   icon: JSX.Element,
+   text: string,
+   url: string,
+   cname?: string
+}

@@ -1,0 +1,259 @@
+@import '../config';
+
+main.article-section-container {
+   margin-top: $navHeight;
+
+   section.article-container {
+      h2.article-end-header {     
+         color: $color-white;
+         @include ClampFont(1, 4, 1.5);
+         font-weight: 600;
+         font-family: 'IBM Plex Mono', monospace;
+         margin-bottom: 1.5em;     
+      }
+
+      div.wrap {
+         display: flex;
+      }
+
+      div.wrap2 {
+         width: 74%;
+         background: $background-dark-2;
+         margin: 0 auto;
+         padding: 2em;
+      }
+
+      div.SEPARATOR {
+         width: 80%;
+         height: 2px;
+         background: $color-grey-darker;
+         margin: 0 auto 5em auto;
+         border-radius: 2em;
+      }
+
+      section.article-informations {
+         width: 13%;
+         min-width: 100px;
+         height: calc(100vh - 60px);
+         position: sticky;
+         top: $navHeight;
+         @include Flex-c-c;
+         flex-direction: column;
+
+         span.icon-wrap {
+            @include Flex-c-c;
+            flex-direction: column;
+            margin: 1em 0;
+            cursor: pointer;
+
+            span {
+               @include Clamp(25, 7, 35);
+               transition: .3s;
+
+               svg {
+                  @include FullSize;
+                  color: $color-white;
+                  transition: .3s;
+               }
+            }
+
+            label {
+               color: $color-white;
+               font-weight: 600;
+               @include ClampFont(.85, 3, 1.1);
+               cursor: pointer;
+            }
+
+            &:hover {
+               span { transform: scale(1.3); svg { color: $color-blue-light; } }
+            }
+         }
+      }
+
+      article.article-content {
+         width: 74%;
+         background: $background-dark-2;
+         padding: 2em;
+
+         div.current-location {
+            span {
+               font-weight: 600;
+               @include ClampFont(.6, 2, .75);
+               color: $color-white;
+               cursor: pointer;
+               transition: .3s;
+
+               &.current {
+                  color: $color-grey-light;
+                  pointer-events: none;
+               }
+
+               &:hover {
+                  color: $color-blue-light;
+               }
+            }
+         }
+
+         div.hash-date-wrap {
+            @include Flex-sb-none;
+
+            h5.hashtag-component {
+               color: $color-grey-light;
+               font-weight: 700;
+               @include ClampFont(.75, 3, 1.1);
+               margin-bottom: .5em;
+            }
+
+            h4.postdate-component {
+               @include ClampFont(.65, 2, .85);
+               color: $color-grey-light;
+
+               span {
+                  &.date {
+                     margin-left: .5em;
+                     font-weight: 600;
+                  }
+
+                  &.info-text {
+                     font-weight: 400;
+                  }                
+               }
+            }
+         }
+
+         p.text {     
+            color: #a5a5a5;
+            font-weight: 500;
+            line-height: 3em;
+
+            &:not(span) {
+               @include ClampFont(.8, 1.5, .9);
+            }
+
+            span {
+               font-weight: 500;
+
+               &.color { color: $color-blue-light; }
+               &.bold { font-weight: 700; color: $color-white; }
+               &.header {
+                  display: block;
+                  @include ClampFont(1.25, 2.5, 1.5);
+                  margin: .75em 0 .25em 0;
+                  font-weight: 700;
+                  color: $color-white;
+               }
+               &.box {
+                  display: block;
+                  color: $color-white;
+                  width: 50%;
+                  min-width: 320px;
+                  @include ClampFont(.6, 3, .75);
+                  background: #303030;
+                  line-height: 2em;
+                  padding: 1em;
+                  margin: 1em 0;
+                  font-family: 'IBM Plex Mono', monospace;
+                  font-weight: 700;
+                  text-align: left;
+               }
+               &.image {
+                  display: block;
+                  margin: 1.5em auto 0 auto;
+                  width: 80%;
+                  overflow: hidden;
+
+                  img {
+                     @include FullSize;
+                     object-fit: cover;
+                  }
+               }
+            }
+         }
+
+         h1.title {
+            margin: 1em 0;
+            @include ClampFont(2.25, 4, 3.5);
+            color: $color-white;
+            font-weight: 700;
+         }
+
+         section.tags {
+            display: flex;
+
+            span {
+               background: #202020;
+               border: 1px solid $color-grey-dark;
+               padding: .25em .5em;
+               margin-right: 1em;
+               border-radius: .25em;
+               color: $color-grey-darker;
+               @include ClampFont(.6, 2, .75);
+               font-weight: 400;
+            }
+         }
+
+         figure.main-title-image {
+            width: 100%;
+            overflow: hidden;
+
+            img {
+               width: 100%;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) {
+   main.article-section-container {
+      section.article-container {
+         
+         div.wrap { flex-direction: column-reverse; }
+
+         div.wrap2 {
+            width: 100%;
+            padding: 2em .5em;
+         }
+
+         section.article-informations {
+            width: 100%;
+            background: $background-dark-2;
+            flex-direction: row;
+            position: static;
+            height: auto;
+            padding: 1em 0;
+
+            span.icon-wrap {
+               margin: 0 1em;
+            }
+         }
+
+         article.article-content {
+            width: 100%; 
+            padding: .75em;
+
+            p.text {
+               &:not(span) {
+                  @include ClampFont(.65, 2.3, .8);
+               }
+               text-align: justify;
+
+               span {
+                  &.header {
+                     @include ClampFont(1.1, 3.5, 1.25);
+                  }
+                  &.box {
+                     min-width: auto;
+                     width: 100%;
+                  }
+                  &.image { width: 90%; }
+               }
+            }
+
+            h1.title {
+               @include ClampFont(1.5, 5.5, 2.25);
+            }
+         }
+      }
+   }
+}

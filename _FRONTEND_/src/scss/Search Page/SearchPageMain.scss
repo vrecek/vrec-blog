@@ -1,0 +1,52 @@
+@import '../config';
+
+main.search-page-container {
+   padding-top: $navHeight;
+
+   aside {
+      ul {
+         padding: 0 !important;
+      }
+   }
+
+   section.container {
+      div.search-div {
+         width: 100%;
+         @include Flex-c-c;
+         margin-bottom: 3em;
+
+         div {
+            width: 500px;
+            max-width: 90%;
+            @include Flex-c-c;
+
+            span {
+               width: 8%;
+               @include Flex-c-c;
+
+               svg {
+                 width: 30px;
+                 height: 30px;
+                 color: $color-grey-light;
+               }
+            }
+
+            input {
+               width: 92%;
+               background: #101010;
+               border-radius: .2em;
+               outline: 0;
+               border: 1px solid #606060;
+               padding: .5em;
+               @include ClampFont(.8, 4, 1.1);
+               color: $color-white;
+               font-family: 'Poppins', sans-serif;
+
+               &::placeholder {
+                  font-size: .8rem;
+               }
+            }
+         }
+      }
+   }
+}
