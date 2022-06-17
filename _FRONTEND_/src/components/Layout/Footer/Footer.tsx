@@ -9,26 +9,26 @@ import FooterTextbar from './FooterTextbar'
 const Footer = () => {
    const lists = [
       [
-         { text: 'JavaScript', url: '/' },
-         { text: 'HTML', url: '/' },
-         { text: 'CSS', url: '/' },
-         { text: 'Node JS', url: '/' },
-         { text: 'React JS', url: '/' },
-         { text: 'Git', url: '/' }
+         { text: 'JavaScript', url: '/search/t/JavaScript' },
+         { text: 'HTML', url: '/search/t/HTML' },
+         { text: 'CSS', url: '/search/t/CSS' },
+         { text: 'Node JS', url: '/search/t/NodeJS' },
+         { text: 'React JS', url: '/search/t/ReactJS' },
+         { text: 'Git', url: '/search/t/Git' }
       ],
 
       [
-         { text: 'Backend', url: '/' },
-         { text: 'Frontend', url: '/' },
-         { text: 'Programming', url: '/' },
-         { text: 'News', url: '/' }
+         { text: 'Backend', url: '/search/c/Backend' },
+         { text: 'Frontend', url: '/search/c/Frontend' },
+         { text: 'Programming', url: '/search/c/Programming' },
+         { text: 'News', url: '/search/c/News' }
       ],
 
       [
-         { text: 'Sign in', url: '/' },
-         { text: 'Register', url: '/' },
-         { text: 'About', url: '/' },
-         { text: 'Contact', url: '/' }
+         { text: 'Log in', url: '/credentials/log-in' },
+         { text: 'Register', url: '/credentials/register' },
+         { text: 'About', url: '/about' },
+         { text: 'Contact', url: '/contact' }
       ]
    ]
 

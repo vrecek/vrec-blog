@@ -1,9 +1,9 @@
 import React from 'react'
 import { ArticlePageIconType } from '../../interfaces/ArticlePageInterface'
 
-const ArticleInformationsIcon = ({ icon, num }: ArticlePageIconType) => {
+const ArticleInformationsIcon = ({ icon, num, action }: ArticlePageIconType) => {
    return (
-      <span className='icon-wrap'> 
+      <span onClick={ action } className='icon-wrap'> 
          <span> { icon }</span>
          <label>{ num }</label> 
       </span>

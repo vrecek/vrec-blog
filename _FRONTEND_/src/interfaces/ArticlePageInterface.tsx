@@ -1,6 +1,9 @@
+type Rate = 'like' | 'dislike'
+
 export interface ArticlePageIconType {
    icon: JSX.Element,
-   num: number
+   num: number,
+   action: (e: React.MouseEvent, type?: Rate) => void
 }
 
 export interface ArticleLocationType {

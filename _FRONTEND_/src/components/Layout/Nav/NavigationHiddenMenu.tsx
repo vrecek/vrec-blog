@@ -18,8 +18,8 @@ const NavigationHiddenMenu = ({ setReference }: { setReference: React.RefObject<
 
                <li className='separate'></li>
                
-               <NavigationHiddenMenuLi string='Log in' route='/' icon={ <FiUserCheck /> } />
-               <NavigationHiddenMenuLi string='Register' route='/' icon={ <FiUserPlus /> } />
+               <NavigationHiddenMenuLi string='Log in' route='/credentials/log-in' icon={ <FiUserCheck /> } />
+               <NavigationHiddenMenuLi string='Register' route='/credentials/register' icon={ <FiUserPlus /> } />
 
                <li className='separate'></li>
 

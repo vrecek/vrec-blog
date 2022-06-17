@@ -46,7 +46,7 @@ nav.layout-nav {
             a { text-decoration: none; color: $color-white; }
 
             &.register,
-            &.sign-in {
+            &.log-in {
                h5 {        
                   font-family: 'IBM Plex Mono', monospace; 
                   font-size: clamp(.65rem, 3vw, .9rem); 
@@ -54,7 +54,7 @@ nav.layout-nav {
             }
 
             &.register { a { color: orangered; } }
-            &.sign-in { a { color: $color-grey-light; } }
+            &.log-in { a { color: $color-grey-light; } }
 
             &:hover {
                h5 {

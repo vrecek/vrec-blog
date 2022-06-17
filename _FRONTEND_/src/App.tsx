@@ -7,6 +7,7 @@ import Footer from './components/Layout/Footer/Footer';
 import ArrowTop from './components/Layout/Arrow/ArrowTop';
 import SEARCH_PAGE from './components/Search Page/SEARCH_PAGE';
 import ARTICLE_PAGE from './components/Article Page/ARTICLE_PAGE';
+import LOGIN_REGISTER_PAGE from './components/LoginRegister Page/LOGIN_REGISTER_PAGE';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={ <MAIN_PAGE /> } />
           <Route path='/search/:type/:string' element={ <SEARCH_PAGE key={ window.location.pathname } /> } />
           <Route path='/article/:id_or_title' element={ <ARTICLE_PAGE /> } />
+          <Route path='/credentials/:login_register' element={ <LOGIN_REGISTER_PAGE /> } />
           
         </Routes>
 

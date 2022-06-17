@@ -12,8 +12,8 @@ const NavigationList = () => {
 
             <li className='line'></li>
 
-            <NavigationListLi cname='register' text='Register' url='/' icon={ <FiUserPlus /> } />
-            <NavigationListLi cname='sign-in' text='Log_in' url='/' icon={ <BiLogIn /> } />
+            <NavigationListLi cname='register' text='Register' url='/credentials/register' icon={ <FiUserPlus /> } />
+            <NavigationListLi cname='log-in' text='Log_in' url='/credentials/log-in' icon={ <BiLogIn /> } />
          </ul>
       </section>
    )

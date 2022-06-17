@@ -26,6 +26,7 @@ const NavigationMenu = ({ hiddenMenuReference }: { hiddenMenuReference: React.Re
          current!.style.pointerEvents = 'all'
          return
       }
+      
       menu.style.transform = 'translateX(-150%)'
       current!.style.opacity = '0'
       current!.style.pointerEvents = 'none'
