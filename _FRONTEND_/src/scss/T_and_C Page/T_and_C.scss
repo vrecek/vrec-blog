@@ -1,0 +1,26 @@
+@import '../config';
+
+main.t-and-c-container {
+   margin-top: $navHeight;
+   color: $color-white;
+   padding: 2em;
+   width: 80%;
+   margin: $navHeight auto 0 auto;
+
+   h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2em;
+   }
+
+   h2 {
+      font-weight: 600;
+      margin: 1em 0;
+      font-size: 1.5rem;
+   }
+
+   p {
+      font-size: .9rem;
+      font-weight: 200;
+   }
+}

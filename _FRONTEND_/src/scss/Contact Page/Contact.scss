@@ -1,0 +1,185 @@
+@import '../config';
+
+main.contact-container {
+   margin-top: $navHeight;
+   color: $color-white;
+   padding: 5em;
+   background: $background-dark-2;
+
+   h2 {
+      font-weight: 600;
+      @include ClampFont(1, 4, 1.5);
+      margin-bottom: 1em;
+   }
+
+   form.contact-container {
+      margin-bottom: 5em;
+      width: 730px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: .2em;
+      background: $background-dark-1;
+      padding: 1.5em;
+      overflow: hidden;
+      position: relative;
+
+      h3 {
+         position: absolute;
+         left: 0;
+         top: 0;
+         width: 100%;
+         background: $color-blue-dark;
+         font-weight: 400;
+         padding: .8em 0;
+         text-align: center;
+         animation: contactAnim .5s;
+         animation-delay: 2.5s;
+
+         &.true { color: rgb(21, 255, 21); font-weight: 700; }
+
+         @keyframes contactAnim {
+            0% { top: 0; }
+            100% { top: -150%; }
+         }
+      }
+
+      label {
+         font-weight: 600;
+         @include ClampFont(.65, 3, .8);
+         text-transform: uppercase;
+      }
+
+      input,
+      textarea {
+         width: 100%;
+         background: none;
+         border: 2px solid $color-grey-light;
+         padding: .5em;
+         border-radius: .15em;
+         outline: 0;
+         color: $color-white;
+         @include ClampFont(.75, 3, .85);
+         font-family: 'Poppins', sans-serif;
+         font-weight: 500;
+      }
+
+      div.input-div {
+         margin-bottom: .5em;
+      }
+
+      textarea {
+         resize: none;
+         height: 225px;
+      }
+
+      button {
+         margin: 1em 0 0 auto;
+         width: 130px;
+         background: $color-blue-dark;
+         padding: 1em 0;
+         border-radius: .25em;
+         outline: 0;
+         border: 0;
+         cursor: pointer;
+         transition: .3s;
+
+         label {
+            color: $color-white;
+         }
+
+         &:hover {
+            background: darken($color: $color-blue-dark, $amount: 10%);
+         }
+      }
+   }
+
+   section.contact-direct {
+      div {
+         @include Flex-none-c;
+         margin-bottom: .5em;
+
+         span {
+            width: clamp(18px, 5vw, 25px);
+            height: clamp(18px, 5vw, 25px);
+
+            svg {
+               @include FullSize;
+            }
+
+            &.clip {
+               cursor: pointer;
+               position: relative;
+               transition: .3s;
+
+               svg { pointer-events: none; }
+
+               &::before {
+                  content: attr(data-txt);
+                  position: absolute;
+                  left: 50%;
+                  top: 0;
+                  transform: translateX(-50%);
+                  background: #202020;
+                  white-space: nowrap;
+                  pointer-events: none;
+                  border-radius: .25em;
+                  @include ClampFont(.55, 2, .7);
+                  padding: .25em .5em;
+                  opacity: 0;
+                  transition: .3s;
+                  color: $color-white;
+               }
+
+               &:hover {
+                  color: $color-blue-light;
+
+                  &::before {
+                     top: 100%;
+                     opacity: 1;
+                  }
+               }
+            }
+         }
+
+         h4 {
+            margin: 0 1em;
+            font-weight: 500;
+            @include ClampFont(.8, 3, 1);
+            
+            span {
+               font-weight: 200;
+               margin-left: .5em;
+               color: $color-grey-light;
+            }
+         }
+
+         &.redirect {
+            h4 span {
+               cursor: pointer;
+               transition: .3s;
+
+               &:hover {
+                  color: $color-blue-light;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 768px) { main.contact-container { padding: 2em; } }
+@media (max-width: 480px) {
+   main.contact-container {
+      padding: 0;
+
+      section.contact-direct {
+         padding: 0 .5em 1.5em .5em;
+      }
+
+      form.contact-container {
+         margin-bottom: 2.5em;
+         padding: 2em .5em .5em .5em;
+      }
+   }
+}

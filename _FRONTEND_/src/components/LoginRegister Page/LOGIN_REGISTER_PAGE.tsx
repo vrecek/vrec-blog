@@ -9,36 +9,26 @@ import LoginForm from './Right Section/LoginForm'
 import TypeContent from './Left Section/TypeContent'
 import ButtonContainer from './Left Section/ButtonContainer'
 import RegisterForm from './Right Section/RegisterForm'
+import AppendResult from '../../functions/AppendText'
 
 const LOGIN_REGISTER_PAGE = () => {
    const leftSectionRef = React.useRef<HTMLDivElement>(null)
    const leftSectionBtnRef = React.useRef<HTMLDivElement>(null)
    const formSectionRef = React.useRef<HTMLDivElement>(null)
 
+   const [regAr, logAr] = [...Array(2)].map(x => new AppendResult('h3'))
+
    const location = useLocation()
 
    window.scrollTo(0, 0)
-
-   const createResult = (appendTo: HTMLElement, text: string, cname: string) => {
-      const h3 = document.createElement('h3')
-      h3.textContent = text
-      h3.className = cname
-
-      appendTo.appendChild(h3)
-
-      setTimeout(() => h3.remove(), 3000)
-   }
 
    const submitRegister = (e: React.FormEvent) => {
       e.preventDefault()
 
       const t = e.target as HTMLFormElement
 
-      for(let x of Array.from(t.children)) {
-         if(x.classList.contains('result')) return
-      }
-
-      createResult(t, 'Fill all fields correctly', 'result true')
+      regAr.setMessage = 'Incorrect username or password'
+      regAr.appendTo(t, 3, 'result true')
    }
 
    const submitLogin = (e: React.FormEvent) => {
@@ -46,11 +36,8 @@ const LOGIN_REGISTER_PAGE = () => {
 
       const t = e.target as HTMLFormElement
 
-      for(let x of Array.from(t.children)) {
-         if(x.classList.contains('result')) return
-      }
-
-      createResult(t, 'Incorrect username or password', 'result false')
+      logAr.setMessage = 'Incorrect username or password'
+      logAr.appendTo(t, 3, 'result false')
    }
 
    React.useEffect(() => {

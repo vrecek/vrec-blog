@@ -3,7 +3,7 @@ import React from 'react'
 const FooterTextBar = () => {
    return (
       <section className='bar'>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+         <p>&copy; All rights reserved &copy;</p>
       </section>
    )
 }

@@ -27,8 +27,8 @@ const Footer = () => {
       [
          { text: 'Log in', url: '/credentials/log-in' },
          { text: 'Register', url: '/credentials/register' },
-         { text: 'About', url: '/about' },
-         { text: 'Contact', url: '/contact' }
+         { text: 'Contact', url: '/contact' },
+         { text: 'T & C', url: '/terms-and-conditions' }
       ]
    ]
 

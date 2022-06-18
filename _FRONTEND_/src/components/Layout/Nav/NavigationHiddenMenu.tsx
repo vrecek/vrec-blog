@@ -23,8 +23,8 @@ const NavigationHiddenMenu = ({ setReference }: { setReference: React.RefObject<
 
                <li className='separate'></li>
 
-               <NavigationHiddenMenuLi string='About' route='/' icon={ <HiOutlineInformationCircle /> } />
-               <NavigationHiddenMenuLi string='Contact' route='/' icon={ <FiPhoneCall /> } />
+               <NavigationHiddenMenuLi string='Contact' route='/contact' icon={ <FiPhoneCall /> } />
+               <NavigationHiddenMenuLi string='Terms &amp; Conditions' route='/terms-and-conditions' icon={ <HiOutlineInformationCircle /> } />
 
                <li className='icons'>
                   <NavigationHiddenMenuIcons />

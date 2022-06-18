@@ -8,7 +8,7 @@ const FooterIcons = () => {
          <span onClick={ () => window.open('https://github.com/vrecek', '_blank') }> <FaGithubSquare /> </span>
          <span> <AiFillLinkedin /> </span>
          <span> <FaYoutubeSquare /> </span>
-         <span> <FaSteamSquare /> </span>
+         <span onClick={ () => window.open('https://steamcommunity.com/id/Vrec', '_blank') }> <FaSteamSquare /> </span>
       </div>
    )
 }
