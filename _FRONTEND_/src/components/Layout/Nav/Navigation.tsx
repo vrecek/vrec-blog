@@ -1,10 +1,12 @@
 import React from 'react'
+import { UserContext } from '../../../App'
 import '../../../css/Navigation.css'
 import NavigationIcons from './NavigationIcons'
 import NavigationList from './NavigationList'
 
 const Navigation = () => {
    const navRef = React.useRef<HTMLDivElement>(null)
+   const user = React.useContext(UserContext)
 
    React.useEffect(() => {
       let canChange: boolean = true
@@ -26,9 +28,9 @@ const Navigation = () => {
 
    return (
       <nav ref={ navRef } className='layout-nav'>
-         <NavigationIcons />
+         <NavigationIcons user={ user } />
 
-         <NavigationList />
+         <NavigationList user={ user } />
       </nav>
    )
 }

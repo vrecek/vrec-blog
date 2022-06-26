@@ -15,4 +15,15 @@ export default class NavigateClass {
       }   
    }
 
+   public searchNavigateCorrect(ev: KeyboardEvent | React.KeyboardEvent, correctPass: string, cb: () => void) {
+      const { key } = ev
+
+      const target = ev.target as HTMLInputElement
+      const value: string = target?.value ?? ''
+
+      if(key === 'Enter' && value === correctPass) {
+         cb()
+      }   
+   }
+
 }

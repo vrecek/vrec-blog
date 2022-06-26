@@ -9,7 +9,7 @@ const NavigationListLi = ({ icon, text, url, cname }: NavigationListLiType) => {
       <li className={ classname }> 
          <Link to={ url }> 
             <h5>{ text }</h5> 
-            <span> { icon } </span> 
+            <span className='li-span'> { icon } </span> 
          </Link> 
       </li>
    )

@@ -7,8 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd _FRONTEND_ && npm start",
     "server": "cd _BACKEND_/JS && nodemon server.js",
-    "tsc": "cd _BACKEND_ && tsc"
+    "tsc": "cd _BACKEND_ && tsc",
+    "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run tsc\""
   },
   "author": "vrecek",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.2.2"
+  }
 }

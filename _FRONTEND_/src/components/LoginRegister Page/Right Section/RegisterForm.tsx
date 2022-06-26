@@ -1,11 +1,11 @@
-import React, { ReactText } from 'react'
+import React from 'react'
 import { FormType } from '../../../interfaces/LoginRegisterInterface'
 import InputDiv from './InputDiv'
 import ReCaptcha from 'react-google-recaptcha'
 import Button from '../../REUSABLE/Button'
 import PasswordDiv from './PasswordDiv'
 
-const RegisterForm = ({ submitAction, leftRef }: FormType) => {
+const RegisterForm = ({ submitAction, leftRef, captchaRef }: FormType) => {
    const formRef = React.useRef<HTMLFormElement>(null)
    const confPassRef = React.useRef<HTMLInputElement>(null)
    const [listReq, setList] = React.useState<{ el: HTMLLIElement[], vis: boolean }>({ el: [], vis: false })
@@ -114,7 +114,6 @@ const RegisterForm = ({ submitAction, leftRef }: FormType) => {
 
    return (
       <form ref={ formRef } onSubmit={ submitAction } className="register">
-
          <section className="wrap">
             <h2>Register</h2>
             
@@ -128,7 +127,12 @@ const RegisterForm = ({ submitAction, leftRef }: FormType) => {
             <InputDiv keyDown={ checkCheckbox } type='checkbox' idFor='check-reg' labelText='Accept Terms &amp; Conditions' cname='reg-inp-check' />
 
             <div className="captcha">
-               <ReCaptcha onExpired={ captchaExpired } onChange={ checkCaptcha } sitekey={`${ process.env.REACT_APP_CAPTCHA_CLIENT }`} />
+               <ReCaptcha  
+                  ref={ captchaRef }
+                  onExpired={ captchaExpired } 
+                  onChange={ checkCaptcha } 
+                  sitekey={`${ process.env.REACT_APP_CAPTCHA_CLIENT }`} 
+               />
             </div>
 
             <Button text='Create an account' action={ () => {} } />

@@ -10,6 +10,7 @@
 
 div.App {
    // overflow-x: hidden;
+   max-width: 100%;
 }
 
 body {
@@ -18,16 +19,72 @@ body {
    width: 100vw;
    overflow-x: hidden;
    font-family: 'Poppins', sans-serif;
+   position: relative;
 
    &::-webkit-scrollbar {
       width: 5px;
       background: black;
    }
 
+   &::-webkit-scrollbar-track {
+      background: $background-dark-1;
+   }
+
    &::-webkit-scrollbar-thumb {
       width: 100%;
       background: rgb(128, 0, 0);
       border-radius: 1em;
+   }
+
+   div.loading-abs,
+   div.loading-cont,
+   div.loading-abs-50,
+   div.loading-fixed {
+      @include FullSize;
+      @include Absolute(0, 0);
+      background: rgba(15, 15, 15, .95);
+      z-index: 99999;
+      display: block;
+
+      span {
+         display: block;
+         aspect-ratio: 1;
+         width: clamp(125px, 30%, 225px);
+         @include Absolute50Translate;
+         border-radius: 45%;
+         background: #0a0015;
+         border: 10px solid rgba(255, 255, 255, .2);
+         animation: loadAnim 2s linear infinite;
+         border-top-color: white;
+
+         @keyframes loadAnim {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+         }
+      }
+   }
+
+   div.loading-fixed { position: fixed; }
+
+   div.loading-cont {
+      left: 0;
+      top: 0;
+
+      span {
+         top: auto;
+         bottom: 0;
+         width: 25%;
+         min-width: 100px;
+      }
+   }
+   
+   div.loading-abs-50 {
+      @include Absolute50Translate;
+
+      span {
+         height: 100%;
+         width: auto;
+      }
    }
 
    div.back {

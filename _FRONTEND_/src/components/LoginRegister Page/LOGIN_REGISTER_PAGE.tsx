@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import '../../css/LoginRegister.css'
 import FigureImage from '../REUSABLE/FigureImage'
 import background from '../../images/logreg_image.jpg'
@@ -10,41 +10,121 @@ import TypeContent from './Left Section/TypeContent'
 import ButtonContainer from './Left Section/ButtonContainer'
 import RegisterForm from './Right Section/RegisterForm'
 import AppendResult from '../../functions/AppendText'
+import Fetches from '../../functions/Fetches'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { LoadingCss } from '../../functions/Loading'
+import { UserContext } from '../../App'
 
 const LOGIN_REGISTER_PAGE = () => {
-   const leftSectionRef = React.useRef<HTMLDivElement>(null)
-   const leftSectionBtnRef = React.useRef<HTMLDivElement>(null)
-   const formSectionRef = React.useRef<HTMLDivElement>(null)
+   window.scrollTo(0, 0)
+
+   const location = useLocation()
+   const n = useNavigate()
+
+   const l = new LoadingCss('loading-abs')
+
+   const USER = React.useContext(UserContext)
+
+   const refs = {
+      leftSectionRef: React.useRef<HTMLDivElement>(null),
+      leftSectionBtnRef: React.useRef<HTMLDivElement>(null),
+      formSectionRef: React.useRef<HTMLDivElement>(null),
+      captchaRef: React.useRef<ReCAPTCHA>(null)
+   }
 
    const [regAr, logAr] = [...Array(2)].map(x => new AppendResult('h3'))
 
-   const location = useLocation()
-
-   window.scrollTo(0, 0)
-
-   const submitRegister = (e: React.FormEvent) => {
+   const submitRegister = async (e: React.FormEvent) => {
       e.preventDefault()
 
       const t = e.target as HTMLFormElement
+      
+      const elements = Array.from(t.elements as HTMLCollectionOf<HTMLInputElement>)
+      const elementsValues: (string | boolean | undefined)[] = Array.from(t.elements as HTMLCollectionOf<HTMLInputElement>).map(x => {
+         switch(x.type) {
+            case 'password': case 'text': case 'textarea': 
+               return x.value
 
-      regAr.setMessage = 'Incorrect username or password'
-      regAr.appendTo(t, 3, 'result true')
+            case 'checkbox': 
+               return x.checked
+
+            default: return undefined
+         }
+      }).slice(0, 6)
+
+      try {
+         l.append(t)
+
+         const data = await Fetches.mix(process.env.REACT_APP_API_USER_REGISTER!, 'POST', elementsValues)
+
+         regAr.setMessage = data.msg
+         regAr.setElementClass = `result true`
+
+         for(let x of elements) {
+            if(x.type === 'checkbox') {
+               x.checked = false
+               continue
+            }
+
+            x.value = ''
+         }
+         
+         setTimeout(() => n('/credentials/log-in', { replace: true }), 1500)
+
+      }catch(err: any) {
+         regAr.setMessage = err.msg
+         regAr.setElementClass = `result false`
+
+      }finally { 
+         refs.captchaRef.current!.reset()
+         regAr.appendTo(t, 3) 
+         l.remove()
+      }
    }
 
-   const submitLogin = (e: React.FormEvent) => {
+   const submitLogin = async (e: React.FormEvent) => {
       e.preventDefault()
 
       const t = e.target as HTMLFormElement
+      const [username, password, remember] = Array.from( t.elements as HTMLCollectionOf<HTMLInputElement> ).slice(0, 3).map(x => {
+         if(x.type !== 'checkbox') return x.value
+         return x.checked
+      })
 
-      logAr.setMessage = 'Incorrect username or password'
-      logAr.appendTo(t, 3, 'result false')
+      try {
+         l.append(t)
+
+         const data = await Fetches.mix(process.env.REACT_APP_API_USER_LOGIN!, 'POST', {
+            username,
+            password,
+            remember
+         })
+         
+         logAr.setElementClass = `result true`
+         logAr.setMessage = data.msg
+
+         setTimeout(() => window.location.href = '/', 500);
+
+      }catch(err: any) {
+         logAr.setElementClass = `result false`
+         logAr.setMessage = err.msg
+
+      }finally { 
+         logAr.appendTo(t, 3)
+         l.remove()
+      }
    }
 
    React.useEffect(() => {
+      if(USER) {
+         n('/', { replace: true })
+         return
+      }
+
       const { pathname } = location
-      const cRef = leftSectionRef.current!
-      const fRef = formSectionRef.current!
-      const cbRef = leftSectionBtnRef.current!
+      const cRef = refs.leftSectionRef.current!
+      const fRef = refs.formSectionRef.current!
+      const cbRef = refs.leftSectionBtnRef.current!
 
       const type: string = pathname.slice(pathname.lastIndexOf('/') + 1)
       const btns: Element[] = Array.from(cbRef.children)
@@ -67,6 +147,7 @@ const LOGIN_REGISTER_PAGE = () => {
 
    }, [location])
 
+   if(!USER)
    return (
       <main className="login-register-container">
 
@@ -76,21 +157,21 @@ const LOGIN_REGISTER_PAGE = () => {
 
             <section className='content left-info'>
 
-               <TypeContent elementType='div' cname='type-content' moveRef={ leftSectionRef }>
+               <TypeContent elementType='div' cname='type-content' moveRef={ refs.leftSectionRef }>
 
                   <LoginSection />
                   <RegisterSection /> 
 
                </TypeContent>
 
-               <ButtonContainer btnContRef={ leftSectionBtnRef } />
+               <ButtonContainer btnContRef={ refs.leftSectionBtnRef } />
 
             </section>
 
-            <TypeContent elementType='section' moveRef={ formSectionRef } cname='content right-inputs'>
+            <TypeContent elementType='section' moveRef={ refs.formSectionRef } cname='content right-inputs'>
 
-               <LoginForm leftRef={ leftSectionRef } submitAction={ submitLogin } />
-               <RegisterForm leftRef={ leftSectionRef } submitAction={ submitRegister } />
+               <LoginForm leftRef={ refs.leftSectionRef } submitAction={ submitLogin } />
+               <RegisterForm captchaRef={ refs.captchaRef } leftRef={ refs.leftSectionRef } submitAction={ submitRegister } />
 
             </TypeContent>
 
@@ -98,6 +179,8 @@ const LOGIN_REGISTER_PAGE = () => {
 
       </main>
    )
+
+   return (<></>)
 }
 
 export default LOGIN_REGISTER_PAGE

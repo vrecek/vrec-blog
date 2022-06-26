@@ -1,9 +1,12 @@
+import ReCAPTCHA from "react-google-recaptcha"
+
 type InputType = 'text' | 'password' | 'checkbox'
 type ElementType = 'section' | 'div'
 
 export interface FormType {
    submitAction: React.FormEventHandler,
-   leftRef: React.RefObject<HTMLDivElement> 
+   leftRef: React.RefObject<HTMLDivElement>,
+   captchaRef?: React.RefObject<ReCAPTCHA>
 }
 
 export interface MoveElementsType {

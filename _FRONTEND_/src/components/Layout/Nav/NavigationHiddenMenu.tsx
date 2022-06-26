@@ -1,13 +1,33 @@
 import React from 'react'
 import { BiHome } from 'react-icons/bi'
-import { FiUserCheck, FiUserPlus, FiPhoneCall } from 'react-icons/fi'
+import { FiUserCheck, FiUserPlus, FiPhoneCall, FiLogOut } from 'react-icons/fi'
 import { HiOutlineInformationCircle } from 'react-icons/hi'
-import { MdOutlineArticle } from 'react-icons/md'
+import { MdOutlineArticle, MdOutlineAdminPanelSettings } from 'react-icons/md'
 import NavigationHiddenMenuLi from './NavigationHiddenMenuLi'
 import '../../../css/NavigationHiddenMenu.css'
 import NavigationHiddenMenuIcons from './NavigationHiddenMenuIcons'
+import { HiddenMenuType } from '../../../interfaces/NavigateInterface'
+import { LoadingCss } from '../../../functions/Loading'
+import Fetches from '../../../functions/Fetches'
 
-const NavigationHiddenMenu = ({ setReference }: { setReference: React.RefObject<HTMLDivElement> }) => {
+const NavigationHiddenMenu = ({ setReference, user }: HiddenMenuType) => {
+   const logout = async (e: React.MouseEvent) => {
+      const t = e.target as HTMLElement
+      const l = new LoadingCss('loading-abs-50')
+
+      let appendTo: HTMLElement
+
+      if(t.tagName === 'SPAN') appendTo = t.parentElement!.parentElement!
+      else appendTo = t.parentElement!
+
+      appendTo.style.pointerEvents = 'none'
+      l.append(appendTo)
+
+      try { const d = await Fetches.mix(process.env.REACT_APP_API_USER_LOGOUT!, 'POST'); console.log(d)  }
+      catch(err) { }
+      finally { window.location.pathname = '/' }
+   }
+
    return (
       <section ref={ setReference } className='layout-hidden-menu'>
 
@@ -18,8 +38,32 @@ const NavigationHiddenMenu = ({ setReference }: { setReference: React.RefObject<
 
                <li className='separate'></li>
                
-               <NavigationHiddenMenuLi string='Log in' route='/credentials/log-in' icon={ <FiUserCheck /> } />
-               <NavigationHiddenMenuLi string='Register' route='/credentials/register' icon={ <FiUserPlus /> } />
+               {
+                  !user
+                  ?
+                     <>
+                        <NavigationHiddenMenuLi string='Log in' route='/credentials/log-in' icon={ <FiUserCheck /> } />
+                        <NavigationHiddenMenuLi string='Register' route='/credentials/register' icon={ <FiUserPlus /> } />
+                     </>
+                  :
+                     <>
+                        {
+                           user.role === 'admin' 
+                           &&
+                              <NavigationHiddenMenuLi 
+                                 string='Admin' 
+                                 icon={ <MdOutlineAdminPanelSettings /> } 
+                                 route={ process.env.REACT_APP_ADMIN_ROUTE }
+                              />
+                        }
+
+                        <NavigationHiddenMenuLi 
+                           string='Log out' 
+                           icon={ <FiLogOut /> } 
+                           logoutFunc={ logout } 
+                        />
+                     </>
+               }
 
                <li className='separate'></li>
 

@@ -4,6 +4,7 @@
 _BACKEND_
 .env
 css
+Admin
 
 # dependencies
 node_modules

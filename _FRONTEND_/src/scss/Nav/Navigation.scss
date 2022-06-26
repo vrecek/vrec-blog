@@ -24,6 +24,21 @@ nav.layout-nav {
             position: relative; 
             @include Flex-c-c; 
 
+            &.logged-as {
+               position: absolute;
+               top: 100%;
+               right: 5px;
+               @include ClampFont(.5, 2, .6);
+               font-weight: 500;
+               pointer-events: none;
+
+               span {
+                  font-weight: 500;
+                  color: $color-orange-light;
+                  margin-left: .5em;
+               }
+            }
+
             &.line {
                width: 1px;
                height: 20px;
@@ -36,7 +51,7 @@ nav.layout-nav {
                font-size: clamp(.65rem, 3vw, 1rem);
             }
 
-            span {
+            span.li-span {
                @include Absolute50Translate;
                opacity: 0;
                transition: .3s;

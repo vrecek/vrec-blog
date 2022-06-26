@@ -47,6 +47,10 @@ class AppendResult {
    public set setMessage(msg: string) {
       this.message = msg
    }
+
+   public set setElementClass(cname: string) {
+      this.elementClass = cname
+   }
 }
 
 export default AppendResult

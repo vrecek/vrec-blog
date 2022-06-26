@@ -14,7 +14,7 @@ main.search-page-container {
       position: sticky;
       top: calc(66px + 2em);
       border-right: 1px solid #606060;
-      padding : 2em;
+      padding: 2em 1em;
       @include Flex-c-c;
       flex-direction: column;
 
@@ -25,6 +25,7 @@ main.search-page-container {
             color: $color-white;
             margin-bottom: .5em;
             font-weight: 600;
+            @include ClampFont(1.3, 2, 1.5);
          }
 
          ul {
@@ -53,6 +54,15 @@ main.search-page-container {
       @include Flex-c-none;
       flex-direction: column;
       margin-bottom: 2em;
+
+      figure {
+         width: 400px;
+         overflow: hidden;
+         
+         img {
+            width: 100%;
+         }
+      }
 
       section.pagination {
          width: 100%;
@@ -97,7 +107,7 @@ main.search-page-container {
             text-align: right;
             margin-top: 1em;
             color: $color-white;
-            @include ClampFont(.65, 3, .7);
+            @include ClampFont(.6, 3, .7);
          }
 
          h1 {
@@ -108,7 +118,7 @@ main.search-page-container {
          }
 
          p {
-            @include ClampFont(.6, 3, .7);
+            @include ClampFont(.65, 3, .7);
             color: $color-grey-darker;
          }
 
@@ -131,7 +141,7 @@ main.search-page-container {
                margin-right: 1em;
                color: $color-grey-darker;
                font-weight: 400;
-               @include ClampFont(.75, 3, 1);
+               @include ClampFont(.7, 3, 1);
             }
          }
 

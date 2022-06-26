@@ -10,11 +10,28 @@ import ArticleInformations from './ArticleInformations'
 import ArticleLocation from './ArticleLocation'
 import RelatedTopicsSection from './ArticleRelated/RelatedTopicsSection'
 import FigureImage from '../REUSABLE/FigureImage'
+import Fetches from '../../functions/Fetches'
 
 const ARTICLE_PAGE = () => {
+   const [article, setArticle] = React.useState<any>(null) 
+
    window.scrollTo(0, 0)
 
    // color / bold / header / box / image (img inside) <-- SPAN CNAME
+   React.useEffect(() => {
+      const id: string = '213'
+
+      const init = async () => {
+         try {
+            const data = await Fetches.mix(`${ process.env.REACT_APP_API_ARTICLE_PRODUCT_PAGE }/${ id }`, 'GET')
+            console.log(data)
+
+         }catch(err) {
+            console.log(err)
+         }
+      }
+      init()
+   }, [])
 
    return (
       <main className='article-section-container'>

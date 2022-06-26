@@ -19,6 +19,11 @@ export interface InputTextType {
    handler?: (e: any) => void,
 }
 
+export interface ArticleLinks {
+   shortTitle: string,
+   _id: string
+}
+
 export interface FigureType {
    altTxt?: string,
    cname?: string,
@@ -36,3 +41,5 @@ export interface ArticlePostdateType {
    children: string,
    preText?: string
 }
+
+export type ComponentHookType<T> = T | null

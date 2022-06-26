@@ -1,14 +1,13 @@
 import React from 'react'
+import { HomepageAside } from '../../../interfaces/HomepageArticlesTypes'
 import ArticlesAsideSection from './ArticlesAsideSection'
 
-const ArticlesAside = () => {
-   const txts = [...Array(6)].map(x => 'conqesutaret elit')
-   
+const ArticlesAside = ({ latest, popular }: HomepageAside) => {
    return (
       <aside>
-         <ArticlesAsideSection title='Latest topics' links={ txts } />
+         <ArticlesAsideSection title='Latest topics' links={ latest } />
 
-         <ArticlesAsideSection title='Popular' links={ txts } />
+         <ArticlesAsideSection title='Popular' links={ popular } />
       </aside>
    )
 }

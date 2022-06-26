@@ -51,6 +51,8 @@ section.layout-hidden-menu {
          }
 
          li:not(.icons) {
+            position: relative;
+            
             &.separate {
                width: calc(100% - 60px);
                margin: 0 0 0 auto;
@@ -58,7 +60,7 @@ section.layout-hidden-menu {
                background: $color-red-dark;
             }
 
-            a {
+            a, p {
                display: block;
                color: $color-grey-light;
                text-decoration: none;
@@ -86,6 +88,12 @@ section.layout-hidden-menu {
                   color: $color-white;
                   span { background: $color-blue-dark; }
                }
+            }
+
+            p {
+               font-weight: 600;
+               cursor: pointer;
+               color: crimson;
             }
          }
       }

@@ -1,11 +1,13 @@
 import React from 'react'
 
-const ArticleTags = () => {
+const ArticleTags = ({ tags }: { tags: string[] }) => {
    return (
       <div>
-         <span>Lorefdsm</span>
-         <span>Lorem fsd</span>
-         <span>Lorem</span>
+         {
+            tags.map((x, i) => (
+               <span key={ i }>{ x }</span>
+            ))
+         }
       </div>
    )
 }

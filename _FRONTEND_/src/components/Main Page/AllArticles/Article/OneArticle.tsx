@@ -1,24 +1,25 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ArticleContainerType } from '../../../../interfaces/HomepageArticlesTypes'
 import Hashtag from '../../../REUSABLE/Hashtag'
 import ArticleTags from './ArticleTags'
 
-const OneArticle = () => {
+const OneArticle = ({ text, title, tags, published, category, id }: ArticleContainerType) => {
    const n = useNavigate()
 
    return (
-      <article className='article' onClick={ () => n('/article/dummy-title') }>
+      <article className='article' onClick={ () => n(`/article/${ id }`) }>
          <section className='tags'>
-            <Hashtag>loremipsum</Hashtag>
+            <Hashtag>{ category }</Hashtag>
 
-            <ArticleTags />
+            <ArticleTags tags={ tags } />
          </section>
 
-         <h1>Lorem ipsum dolor sit amet conestaur</h1>
+         <h1>{ title }</h1>
 
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, hic reiciendis? Expedita voluptas sunt eos nemo sequi consequatur libero, mollitia perferendis modi itaque sed ducimus temporibus!</p>
+         <p>{ text }</p>
 
-         <h4>4 days ago</h4>
+         <h4>published: { published }</h4>
       </article>
    )
 }

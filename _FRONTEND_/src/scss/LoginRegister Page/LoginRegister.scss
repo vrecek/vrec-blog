@@ -190,7 +190,7 @@ main.login-register-container {
                padding: 1em 0;
                text-align: center;
                font-weight: 500;
-               @include ClampFont(.85, 4, 1.2);
+               @include ClampFont(.85, 4, 1.1);
                animation: resultAnim .5s;
                animation-delay: 2.5s;
                

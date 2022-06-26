@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { NavigationMenuLiType } from '../../../interfaces/NavigateInterface'
 
-const NavigationHiddenMenuLi = ({ icon, route, string }: NavigationMenuLiType) => {
+const NavigationHiddenMenuLi = ({ icon, route, string, logoutFunc }: NavigationMenuLiType) => {
    const hideMenu = (e: React.MouseEvent) => {
       const t = e.target as HTMLElement
       
@@ -33,9 +33,19 @@ const NavigationHiddenMenuLi = ({ icon, route, string }: NavigationMenuLiType) =
       
    }
 
+   if(logoutFunc) 
    return (
       <li>
-         <Link onClick={ hideMenu } to={ route }> 
+         <p onClick={ logoutFunc }> 
+            <span>{ icon }</span> 
+            { string }
+         </p>
+      </li>
+   )
+
+   return (
+      <li>
+         <Link onClick={ hideMenu } to={ route ?? '/' }> 
             <span>{ icon }</span> 
             { string }
          </Link>

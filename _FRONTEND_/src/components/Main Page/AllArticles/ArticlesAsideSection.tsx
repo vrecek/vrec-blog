@@ -4,15 +4,19 @@ import { ArticlesAsideType } from '../../../interfaces/HomepageArticlesTypes'
 
 const ArticlesAsideSection = ({ title, links }: ArticlesAsideType) => {
    const n = useNavigate()
-   
+
    return (
-      <div onClick={ () => n('/article/id') }>
+      <div>
          <h2>{ title }</h2>
          <ul>
             {
-               links.map((x, i) => (
-                  <li key={ i }>{ x }</li>
-               ))
+               links?.length
+               ?
+                  links.map((x, i) => (
+                     <li onClick={ () => n(`/article/${ x._id }`) } key={ i }>{ x.shortTitle }</li>
+                  ))
+               :
+                  <h1>No related articles found</h1>
             }
          </ul>
       </div>

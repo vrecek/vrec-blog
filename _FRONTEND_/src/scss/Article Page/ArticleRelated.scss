@@ -3,6 +3,13 @@
 section.related-topics-section {
    section.topics-container {
       margin-bottom: 5em;
+
+      h1 {
+         color: $color-grey-light;
+         font-weight: 600;
+         text-transform: uppercase;
+         @include ClampFont(.7, 3, .8);
+      }
    }
 
    article {

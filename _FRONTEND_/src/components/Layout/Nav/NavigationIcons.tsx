@@ -2,11 +2,13 @@ import React from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import NavigateClass from '../../../functions/NavigateClass'
+import { NavUserType } from '../../../interfaces/NavigateInterface'
+import UserType from '../../../interfaces/UserType'
 import Icon from '../../REUSABLE/Icon'
 import NavigationHiddenMenu from './NavigationHiddenMenu'
 import NavigationMenu from './NavigationMenu'
 
-const NavigationIcons = () => {
+const NavigationIcons = ({ user }: NavUserType) => {
    const navigate = useNavigate()
    const hiddenMenuRef = React.useRef<HTMLDivElement>(null)
    const nc = new NavigateClass()
@@ -58,7 +60,7 @@ const NavigationIcons = () => {
    return (
       <section className='layout-nav-icons'>
          <NavigationMenu hiddenMenuReference={ hiddenMenuRef } />
-         <NavigationHiddenMenu setReference={ hiddenMenuRef } />
+         <NavigationHiddenMenu user={ user } setReference={ hiddenMenuRef } />
 
          <Icon 
             clickEvent={ showSearch }
