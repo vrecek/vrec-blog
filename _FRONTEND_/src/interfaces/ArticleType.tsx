@@ -3,15 +3,18 @@ interface ImageType {
    fileName: string
 }
 
-interface CommentType {
+export interface CommentType {
    author: {
+      id: string,
       username: string,
-      avatar: string
+      avatarUrl: string
    },
 
-   posted: string,
+   postedWhen: string,
 
-   text: string
+   text: string,
+
+   _id: string
 }
 
 export default interface ArticleType {

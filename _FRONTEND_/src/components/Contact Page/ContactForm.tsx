@@ -2,28 +2,51 @@ import React from 'react'
 import Button from '../REUSABLE/Button'
 import InputDiv from '../LoginRegister Page/Right Section/InputDiv'
 import AppendResult from '../../functions/AppendText'
+import Fetches from '../../functions/Fetches'
+import { LoadingCss } from '../../functions/Loading'
+import { UserContext } from '../../App'
 
 const ContactForm = () => {
+   const user = React.useContext(UserContext)
    const ar = new AppendResult('h3')
+   const l = new LoadingCss('loading-abs')
 
-   const sendMessage = (e: React.FormEvent) => {
+   const sendMessage = async (e: React.FormEvent) => {
       e.preventDefault()
 
       const t = e.target as HTMLFormElement
 
-      const [name, mail, text] = Array.from(t.elements as HTMLCollectionOf<HTMLInputElement>).map(x => x.value)
+      const elements: HTMLInputElement[] = Array.from(t.elements as HTMLCollectionOf<HTMLInputElement>)
+      const [name, mail, text] = elements.map(x => x.value)
 
-      if( ar.areStringsSet(name, mail, text) ) ar.setMessage = 'Message has been sent'
-      else ar.setMessage = 'Please fill all fields'
+      l.append(t)
 
-      ar.appendTo(t, 3)
+      try {
+         await Fetches.mix(process.env.REACT_APP_API_MAILER_POST_MESSAGE!, 'POST', {
+            name: user?.username ?? name,
+            mail,
+            text,
+            isRegistered: !!user
+         })
+
+         ar.setMessage = 'Message has been sent'
+
+         for(let x of elements) x.value = ''
+
+      }catch(err: any) {
+         ar.setMessage = err.json.msg
+
+      }finally {
+         l.remove()
+         ar.appendTo(t, 3)
+      }
    }
 
    return (
       <form onSubmit={ sendMessage } className="contact-container">
          <h2>Send us message</h2>
 
-         <InputDiv type='text' cname='input-div' labelText='your name' />
+         <InputDiv defValue={ user?.username } type='text' cname='input-div' labelText='your name' />
          <InputDiv type='text' cname='input-div' labelText='your mail' />
 
          <label>message</label>

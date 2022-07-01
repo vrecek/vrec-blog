@@ -39,12 +39,15 @@ body {
    div.loading-abs,
    div.loading-cont,
    div.loading-abs-50,
-   div.loading-fixed {
+   div.loading-fixed,
+   div.loading {
       @include FullSize;
       @include Absolute(0, 0);
       background: rgba(15, 15, 15, .95);
       z-index: 99999;
       display: block;
+
+      &.transparent { background: rgba(15, 15, 15, .85); } 
 
       span {
          display: block;
@@ -61,6 +64,13 @@ body {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
          }
+      }
+   }
+
+   div.loading {
+      span {
+         width: auto;
+         height: 90%;
       }
    }
 

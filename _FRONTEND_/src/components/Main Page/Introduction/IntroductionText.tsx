@@ -5,7 +5,7 @@ const IntroductionText = () => {
       <div className='wrap'>
          <h1>Browse interesting topics</h1>
 
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, cumque itaque neque labore, exercitationem odit libero sed error, quod fuga voluptas vel.</p>
+         <p>Browse some of the technological / programming topic, mostly focused on full-stack web developing, including libraries or frameworks</p>
       </div>
    )
 }

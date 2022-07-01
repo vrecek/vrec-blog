@@ -97,6 +97,27 @@ section.comment-section {
                background: royalblue;
                cursor: pointer;
                transition: .3s;
+               position: relative;
+
+               h3 {
+                  position: absolute;
+                  right: calc(100% + 10px);
+                  font-size: .8rem;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  font-family: 'Poppins', sans-serif;
+                  color: $color-grey-light;
+                  white-space: nowrap;
+                  font-weight: 700;
+                  animation: anim .5s;
+                  animation-delay: 2s;
+                  pointer-events: none;
+
+                  @keyframes anim {
+                     0% { right: calc(100% + 10px); opacity: 1; }
+                     100%{ right: 0; opacity: 0; }
+                  }
+               }
 
                label {
                   font-weight: 600;
@@ -115,10 +136,73 @@ section.comment-section {
    }
 
    article.comment {
+      position: relative;
+
       &:first-child { margin-top: 3em; }
 
       &:not(:last-child) {
          margin-bottom: 5em;
+      }
+
+      h5.del-error {
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         font-weight: 600;
+         letter-spacing: 1px;
+         color: rgb(255, 48, 48);
+         @include ClampFont(.6, 2.5, .7);
+         text-transform: uppercase;
+
+         @media (max-width: 768px) {
+            top: auto;
+            bottom: 100%;
+         }
+      }
+
+      span.del-icon {
+         position: absolute;
+         right: 0;
+         top: 0;
+         height: clamp(10px, 5vw, 20px);
+         aspect-ratio: 1;
+         color: crimson;
+         transition: .3s;
+         cursor: pointer;
+
+         &::before {
+            position: absolute;
+            bottom: 100%;
+            white-space: nowrap;
+            left: 50%;
+            transform: translateX(-50%);
+            content: 'Delete comment';
+            @include ClampFont(.6, 3, .7);
+            color: $color-white;
+            text-transform: uppercase;
+            font-weight: 700;
+            pointer-events: none;
+            opacity: 0;
+            transition: .75s;
+
+            @media (max-width: 768px) {
+               transform: translateX(0);
+               left: auto;
+               right: 0;
+            }
+         }
+
+         svg {
+            @include FullSize;
+            pointer-events: none;
+         }
+
+         &:hover {
+            color: red;
+
+            &::before { opacity: 1; }
+         }
       }
 
       article.text {
@@ -164,11 +248,11 @@ section.comment-section {
 
             h4.username {
                font-weight: 600;
-               @include ClampFont(.9, 4, 1);
+               @include ClampFont(.8, 4, 1);
             }
 
             h4.postdate-component {
-               @include ClampFont(.7, 3, .8);
+               @include ClampFont(.65, 3, .8);
 
                span {
                   &.info-text {

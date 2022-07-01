@@ -5,8 +5,11 @@ import i from '../../../images/introduction.png'
 import FooterList from './FooterList'
 import FooterIcons from './FooterIcons'
 import FooterTextbar from './FooterTextbar'
+import { UserContext } from '../../../App'
 
 const Footer = () => {
+   const user = React.useContext(UserContext)
+
    const lists = [
       [
          { text: 'JavaScript', url: '/search/t/JavaScript' },
@@ -25,12 +28,21 @@ const Footer = () => {
       ],
 
       [
-         { text: 'Log in', url: '/credentials/log-in' },
-         { text: 'Register', url: '/credentials/register' },
          { text: 'Contact', url: '/contact' },
          { text: 'T & C', url: '/terms-and-conditions' }
       ]
    ]
+
+   user
+   ?
+   lists[2].unshift(
+      { text: 'Profile', url: '/profile' }
+   )
+   :
+   lists[2].unshift(
+      { text: 'Log in', url: '/credentials/log-in' },
+      { text: 'Register', url: '/credentials/register' }
+   )
 
    return (
       <footer className="layout-footer">

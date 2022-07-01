@@ -3,6 +3,22 @@
 main.article-section-container {
    margin-top: $navHeight;
 
+   section.blank-loading {
+      background: $background-dark-2;
+      width: 100%;
+      height: $fullHeight;
+      @include Flex-sa-c;
+      flex-direction: column;
+
+      div {
+         width: 80%;
+         background: #252525;
+
+         &.big { height: 50%; }
+         &.small { height: 15%; }
+      }
+   }
+
    section.article-container {
       h2.article-end-header {     
          color: $color-white;
@@ -45,10 +61,34 @@ main.article-section-container {
             flex-direction: column;
             margin: 1em 0;
             cursor: pointer;
+            position: relative;
+
+            h3 {
+               position: absolute;
+               top: 100%;
+               left: 50%;
+               transform: translateX(-50%);
+               border-radius: .25em .5em;
+               width: max-content;
+               padding: .25em;
+               background: #303030;
+               color: $color-white;
+               font-weight: 600;
+               font-size: .75rem;
+               white-space: nowrap;
+               animation: anim 1s;
+               animation-delay: 1.5s;
+
+               @keyframes anim {
+                  0% { top: 100%; opacity: 1 }
+                  100% { top: 0; opacity: 0 }
+               }
+            }
 
             span {
                @include Clamp(25, 7, 35);
                transition: .3s;
+               pointer-events: none;
 
                svg {
                   @include FullSize;
@@ -62,6 +102,11 @@ main.article-section-container {
                font-weight: 600;
                @include ClampFont(.85, 3, 1.1);
                cursor: pointer;
+               pointer-events: none;
+            }
+
+            &.active {
+               span { svg { color: orange; } }
             }
 
             &:hover {
@@ -76,20 +121,31 @@ main.article-section-container {
          padding: 2em;
 
          div.current-location {
-            span {
+            @include Flex-sb-none;
+
+            span, h4 {
                font-weight: 600;
                @include ClampFont(.6, 2, .75);
                color: $color-white;
-               cursor: pointer;
                transition: .3s;
+            }
 
-               &.current {
-                  color: $color-grey-light;
-                  pointer-events: none;
-               }
+            h4 {
+               span:nth-child(2) { margin-left: .5em; }
+            }
 
-               &:hover {
-                  color: $color-blue-light;
+            div {
+               span {
+                  cursor: pointer;
+
+                  &.current {
+                     color: $color-grey-light;
+                     pointer-events: none;      
+                  }
+
+                  &:hover {
+                     color: $color-blue-light;
+                  }
                }
             }
          }
@@ -189,14 +245,25 @@ main.article-section-container {
                color: $color-grey-darker;
                @include ClampFont(.6, 2, .75);
                font-weight: 400;
+               transition: .3s;
+               cursor: pointer;
+
+               &:hover {
+                  transform: scale(.95);
+                  background: #303030;
+               }
             }
          }
 
          figure.main-title-image {
             width: 100%;
+            height: clamp(9.5em, 40vw, 33em);
             overflow: hidden;
+            background: #252525;
 
             img {
+               height: 100%;
+               object-fit: cover;
                width: 100%;
             }
          }

@@ -2,8 +2,6 @@ import React from 'react'
 import '../../css/ArticlesSection.css'
 import '../../css/SearchPageMain.css'
 import ArticlesAsideSection from '../Main Page/AllArticles/ArticlesAsideSection'
-import OneArticle from '../Main Page/AllArticles/Article/OneArticle'
-import SearchDiv from './SearchDiv'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Fetches from '../../functions/Fetches'
 import { ComponentHookType } from '../../interfaces/ReusableTypes'
@@ -25,7 +23,7 @@ const SEARCH_PAGE = () => {
          const loc: string = window.location.href
          const query: string = loc.slice(loc.lastIndexOf('/') + 1)
       
-         const position: number = loc.indexOf(query) - 2
+         const position: number = loc.lastIndexOf(query) - 2
          const type: SearchType = loc.slice(position, position + 1) as SearchType
 
          const l = new LoadingCss('loading-fixed')

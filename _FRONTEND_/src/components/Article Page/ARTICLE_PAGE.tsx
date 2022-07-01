@@ -1,88 +1,68 @@
 import React from 'react'
 import '../../css/ArticleSection.css'
-import Hashtag from '../REUSABLE/Hashtag'
-import CommentSection from './ArticleComments/CommentSection'
-import ArticleTitle from './ArticleDetails/ArticleTitle'
-import PostDate from '../REUSABLE/PostDate'
-import TagsContainer from './ArticleDetails/TagsContainer'
-import TextContent from './ArticleDetails/TextContent'
-import ArticleInformations from './ArticleInformations'
-import ArticleLocation from './ArticleLocation'
-import RelatedTopicsSection from './ArticleRelated/RelatedTopicsSection'
-import FigureImage from '../REUSABLE/FigureImage'
 import Fetches from '../../functions/Fetches'
+import { ComponentHookType } from '../../interfaces/ReusableTypes'
+import { ArticlePageType } from '../../interfaces/ArticlePageInterface'
+import ArticleMainContent from './ArticleMainContent'
+import ArticleFinishContent from './ArticleFinishContent'
+import LoadingBlank from './LoadingBlank'
+import { LoadingCss } from '../../functions/Loading'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const ARTICLE_PAGE = () => {
-   const [article, setArticle] = React.useState<any>(null) 
+   const n = useNavigate()
+   const [article, setArticle] = React.useState<ComponentHookType<ArticlePageType>>(null) 
+   const location = useLocation()
 
    window.scrollTo(0, 0)
 
-   // color / bold / header / box / image (img inside) <-- SPAN CNAME
    React.useEffect(() => {
-      const id: string = '213'
+      const loc: string = window.location.pathname
+      const id: string = loc.slice(loc.lastIndexOf('/') + 1)
 
       const init = async () => {
+         setArticle(null)
+         
+         const l = new LoadingCss('loading-fixed transparent')
+         l.append(document.body)
+         
          try {
-            const data = await Fetches.mix(`${ process.env.REACT_APP_API_ARTICLE_PRODUCT_PAGE }/${ id }`, 'GET')
-            console.log(data)
+            const data = await Fetches.mix<ArticlePageType>(`${ process.env.REACT_APP_API_ARTICLE_PRODUCT_PAGE }/${ id }`, 'GET')
 
-         }catch(err) {
-            console.log(err)
-         }
+            setArticle({
+               content: data.json.content,
+               related: data.json.related,
+               finished: true
+            })
+
+         }catch(err: any) {
+            n('/error', { state: { code: err.code, msg: err?.json?.msg ?? err.msg  } })
+
+         }finally { l.remove() }
       }
       init()
-   }, [])
+   }, [location])
 
    return (
       <main className='article-section-container'>
          <section className='article-container'>
 
-            <div className='wrap'>
-               <ArticleInformations />
+            {
+               article?.finished
+               ?
+                  <>
+                     <ArticleMainContent content={ article.content } />    
 
-               <article className="article-content">
-                  <ArticleLocation
-                     articleTitle='Dummy title'
-                     articleCategory='Backend' 
-                  />
-
-                  <FigureImage
-                     source='https://www.pixelstalk.net/wp-content/uploads/2016/07/Free-Download-1080p-Full-HD-Images.jpg'
-                     cname='main-title-image'
-                     altTxt='title image'
-                  />
-
-                  <div className="hash-date-wrap">
-                     <Hashtag>loremipsum</Hashtag>
-                     <PostDate>12.20.2022</PostDate>
-                  </div>
-
-                  <TagsContainer 
-                     tags={ ['Contest', 'Ipsum', 'Adispicing'] }
-                  />
-
-                  <ArticleTitle 
-                     title='Lorem ipsum dolor ist amet consecteturr elit.'
-                  />
-
-                  <TextContent>xd</TextContent>
-                  
-               </article>
-            </div>
-
-          
-
-            <div className="wrap2">
-
-               <div className="SEPARATOR"></div>
-
-               <RelatedTopicsSection />
-
-               <div className="SEPARATOR"></div>
-               
-               <CommentSection />
-
-            </div>
+                     <ArticleFinishContent 
+                        articleHook={ setArticle }
+                        artId={ article.content._id } 
+                        relatedArticles={ article.related } 
+                        comments={ article.content.comments } 
+                     />   
+                  </>
+               :
+               <LoadingBlank />
+            }
             
          </section>
       </main>

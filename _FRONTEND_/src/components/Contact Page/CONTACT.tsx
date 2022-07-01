@@ -2,6 +2,8 @@ import React from 'react'
 import '../../css/Contact.css'
 import DirectContact from './DirectContact'
 import ContactForm from './ContactForm'
+import contact from '../../images/contact.png'
+import FigureImage from '../REUSABLE/FigureImage'
 
 const CONTACT = () => {
    window.scrollTo(0, 0)
@@ -9,9 +11,13 @@ const CONTACT = () => {
    return (
       <main className="contact-container">
 
-         <ContactForm />
+         <section className='wrap'>
+            <ContactForm />
 
-         <DirectContact />
+            <DirectContact />
+         </section>
+
+         <FigureImage source={ contact } altTxt='contact' />
 
       </main>
    )

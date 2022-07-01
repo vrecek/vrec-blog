@@ -1,0 +1,64 @@
+@import '../config';
+
+section.cookie-reminder {
+   position: fixed;
+   left: 50%;
+   transform: translateX(-50%);
+   bottom: 0;
+   background: #212121;
+   padding: 1em;
+   border: 1px solid rgb(79, 79, 79);
+   border-radius: .2em .2em 0 0;
+   z-index: 99999;
+   width: 550px;
+   max-width: 100%;
+   color: $color-white;
+   transition: .5s;
+
+   button {
+      width: 25%;
+      min-width: 100px;
+      padding: .75em 0;
+      background: rgb(61, 99, 212);
+      border: 0;
+      transition: .3s;
+      outline: 0;
+      cursor: pointer;
+      border-radius: .2em;
+
+      label {
+         font-family: 'Poppins', sans-serif;
+         font-weight: 700;
+         text-shadow: 0 0 1px black;
+         font-size: .8rem;
+         color: $color-white;
+      }
+
+      &:hover {
+         background: royalblue;
+      }
+   }
+
+   p {
+      @include ClampFont(.6, 2, .75);
+      font-weight: 400;
+      margin: .5em 0 1em 0;
+   }
+
+   h1 {
+      font-weight: 600;
+      @include Flex-none-c;
+      @include ClampFont(1.2, 4, 1.5);
+
+      span {
+         height: 30px;
+         margin-left: .25em;
+         color: saddlebrown;
+         filter: drop-shadow(0 0 1px rgb(86, 86, 86));
+         aspect-ratio: 1;
+         @include Flex-c-c;
+
+         svg { @include FullSize; }
+      }
+   }
+}

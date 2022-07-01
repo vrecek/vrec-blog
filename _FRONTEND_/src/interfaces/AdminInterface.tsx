@@ -95,3 +95,10 @@ export interface UserComponentInfoType {
    role: UserRole,
    lastSeen: string
 }
+
+export interface AllArticlesCommentType {
+   author: string,
+   id: string,
+   text: string,
+   articleId: string
+}

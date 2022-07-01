@@ -1,0 +1,295 @@
+@import '../config';
+
+main.user-profile {
+   padding-top: $navHeight;
+   min-height: 100vh;
+   display: flex;
+
+   h3.title-what {
+      text-transform: uppercase;
+      @include ClampFont(.75, 3, .9);
+      color: $color-white;
+      letter-spacing: 2px;
+      font-weight: 500;
+      border-bottom: 1px solid $color-white;
+      margin-bottom: .3em;
+      width: max-content;
+      min-width: 175px;
+
+      @media (max-width: 480px) {
+         width: 100%;
+      }
+   }
+
+   h3.info {
+      border-radius: 1em;
+      color: $color-white;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: .4em 2em;
+      @include ClampFont(.7, 2, .85);
+      width: max-content;
+      position: relative;
+
+      &.type {
+         background: rgb(39, 70, 164);
+         margin: 2em 0 3em 0;
+         text-transform: capitalize;
+      }
+      &.delete {
+         background: rgb(203, 3, 3);
+         cursor: pointer;
+         transition: .3s;
+         margin: 3em 0;
+
+         &:hover {
+            background: crimson;
+         }
+      }
+
+      h5 {
+         position: absolute;
+         top: calc(100% + 5px);
+         left: 0;
+         width: 100%;
+         color: red;
+         pointer-events: none;
+         font-weight: 400;
+      }
+   }
+
+   aside {
+      background: #222222;
+      width: 20%;
+      min-width: 230px;
+      padding: 1em;
+      @include Flex-c-none;
+      flex-direction: column;
+
+      section.wrap {
+         width: 100%; 
+         background: #303030;
+         border-radius: .5em;
+         padding: 1em 1.5em;
+
+         h6 {
+            color: $color-white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+         }
+
+         h5 {
+            color: rgb(149, 149, 149);
+            font-weight: 500;
+         }
+
+         div.inline {
+            @include Flex-none-c;
+
+            &:not(:first-child) { margin-top: 1.75em; }
+
+            h5 { margin-left: 1em; }
+
+            h6, h5 { @include ClampFont(.7, 2, .75); }
+         }
+      }
+
+      figure {
+         width: 60%;
+         aspect-ratio: 1;
+         border-radius: 10%;
+         overflow: hidden;
+
+         img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+      }
+   }
+
+   section.main-content {
+      width: 80%;
+      background: $background-dark-2;
+      padding: 2em;
+
+      h1 {
+         color: $color-white;
+         font-weight: 100;
+         letter-spacing: 2px;
+         margin-bottom: 2em;
+         @include Flex-none-c;
+         @include ClampFont(1.1, 3, 1.5);
+
+         span {
+            display: block;
+            height: 20px;
+            aspect-ratio: 1;
+            @include Flex-c-c;
+            margin-right: .25em;
+
+            svg {
+               @include FullSize;
+            }
+         }
+      }
+
+      section.all-wrap { @include Flex-sb-none; }
+
+      section.first {
+         width: 55%;
+   
+         div.wrap {
+            &:not(:last-child) {
+               margin-bottom: 4em;
+            }
+
+            h2 {
+               @include ClampFont(.7, 3, 1);
+               font-weight: 500;
+               color: rgb(3, 142, 3);
+               text-shadow: 0 0 1px rgb(19, 177, 19);
+               @include Flex-none-c;
+               width: 100%;
+   
+               span {
+                  height: 20px;
+                  aspect-ratio: 1;
+                  margin-left: .3em;
+   
+                  svg {
+                     @include FullSize;
+                     color: $color-white;
+                  }
+               }
+            }
+
+            &.pass {
+               h2 {
+                  color: $color-grey-darker;
+                  text-shadow: none;
+                  font-size: .85rem;
+                  cursor: pointer;
+                  transition: .3s;
+   
+                  &:hover {
+                     color: $color-grey-light;
+                  }
+               }
+            }
+         }
+      }
+
+      section.second {
+         width: 35%;
+
+         form.avatar-change {
+            figure {
+               width: 175px;
+               aspect-ratio: 1;
+               border: 1px solid #303030;
+               overflow: hidden;
+   
+               img {
+                  @include Fit;
+               }
+            }
+
+            input { color: $color-white; }
+
+            button {
+               display: block;
+               width: 50%;
+               width: 175px;
+               padding: clamp(.5em, 3vw, 1em) 0;
+               background: royalblue;
+               border-radius: .1em;
+               border: 0;
+               outline: 0;
+               margin-top: 2em;
+               cursor: pointer;
+               transition: .3s;
+               position: relative;
+
+               h5 {
+                  position: absolute;
+                  top: 100%;
+                  width: 100%;
+                  min-width: max-content;
+                  left: 0;
+                  color: red;
+                  font-family: 'Poppins', sans-serif;
+                  font-weight: 500;
+                  @include ClampFont(.65, 2, .8);
+
+                  &.success { color: rgb(15, 174, 15); }
+               }
+
+               label {
+                  display: block;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: .5px;
+                  font-family: 'Poppins', sans-serif;
+                  color: $color-white;
+                  transition: .3s;
+                  @include ClampFont(.7, 3, .8);
+               }
+
+               &:hover {
+                  background: rgb(54, 90, 197);
+                  label { letter-spacing: 2.5px; }
+               }
+            }
+         }
+      }
+
+      @media (max-width: 768px) {
+         section.all-wrap { flex-direction: column-reverse; }
+
+         section.first,
+         section.second {
+            width: 100%;
+         }
+
+         section.second {
+            margin-bottom: 3em;
+
+            form.avatar-change {
+               figure { width: clamp(100px, 30vw, 175px); }
+
+               button {
+                  width: clamp(100px, 30vw, 175px);
+                  min-width: auto;
+
+                  h5 {
+                     word-break: nowrap;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 1000px) {
+   main.user-profile {
+      flex-direction: column;
+
+      aside,
+      section.main-content {
+         width: 100%;
+      }
+
+      aside {
+         h3.info {
+            &.type { margin: .75em 0; }
+         }
+
+         figure {
+            width: clamp(80px, 30vw, 100px);
+         }
+      }
+   }
+}

@@ -1,4 +1,4 @@
-import ArticleType from "./ArticleType";
+import ArticleType, { CommentType } from "./ArticleType";
 import { ArticleLinks } from "./ReusableTypes";
 
 export interface SearchArticlesJSON {
@@ -9,4 +9,13 @@ export interface SearchArticlesJSON {
 
 export interface SearchContainerType {
    articles?: ArticleType[],
+}
+
+export interface ArticlePageRelated {
+   title: string,
+   published: string,
+   image: string,
+   category: string,
+   tags: string[],
+   id: string
 }

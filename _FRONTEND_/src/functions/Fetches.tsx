@@ -1,6 +1,6 @@
 import React from 'react'
 
-type RequestType = 'GET' | 'POST' | 'PUT' | 'UPDATE' | 'DELETE'
+type RequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 interface MixReturn<T> {
    json: T,

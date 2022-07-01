@@ -21,7 +21,8 @@ export interface InputDivType {
    cname: string,
    labelText: string,
    idFor?: string,
-   keyDown?: (e: React.ChangeEvent) => void
+   keyDown?: (e: React.ChangeEvent) => void,
+   defValue?: string
 }
 
 export interface PasswordDivType {

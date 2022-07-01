@@ -10,7 +10,8 @@ import { IoNewspaperOutline } from 'react-icons/io5'
 import { CategoryObject, WhenUpdated } from '../../../interfaces/HomepageArticlesTypes'
 
 const Cards = ({ lastDetails, categoryDetails }: { lastDetails: WhenUpdated, categoryDetails: CategoryObject }) => {
-   const { category, when } = lastDetails
+   const { category, when, _id } = lastDetails
+
    const { backend, frontend, programming, news } = categoryDetails
    
    const cardObj = [
@@ -55,7 +56,7 @@ const Cards = ({ lastDetails, categoryDetails }: { lastDetails: WhenUpdated, cat
       <article className='cards-section'>
          <div className="back"></div>
 
-         <CardsText category={ category } when={ when } />
+         <CardsText id={ _id } category={ category } when={ when } />
 
          <div className="line"></div>
 

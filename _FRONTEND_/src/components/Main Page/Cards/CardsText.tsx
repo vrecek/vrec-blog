@@ -1,9 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { CardsTextType } from '../../../interfaces/HomepageArticlesTypes'
 import Button from '../../REUSABLE/Button'
 import CardsTextParagraph from './CardsTextParagraph'
 
-const CardsText = ({ category, when }: { category: string, when: string }) => {
+const CardsText = ({ category, when, id }: CardsTextType) => {
    const n = useNavigate()
 
    return (
@@ -12,7 +13,7 @@ const CardsText = ({ category, when }: { category: string, when: string }) => {
 
          <CardsTextParagraph category={ category } when={ when } />
 
-         <Button text='Browse' action={ () => n(`/search/c/${ category }`) } additional={ <div></div> } />
+         <Button text='Browse' action={ () => n(`/article/${ id }`) } additional={ <div></div> } />
       </section>
    )
 }

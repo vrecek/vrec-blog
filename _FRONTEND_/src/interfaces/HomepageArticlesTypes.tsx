@@ -15,6 +15,12 @@ export interface WhenUpdated {
    _id: string
 }
 
+export interface CardsTextType {
+   category: string, 
+   when: string,
+   id: string
+}
+
 export interface PopularArticles {
    views: number,
    shortTitle: string,

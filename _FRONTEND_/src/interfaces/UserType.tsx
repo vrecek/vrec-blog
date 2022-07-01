@@ -12,5 +12,10 @@ export default interface UserType {
       str: string
    },
 
+   avatar: {
+      url: string,
+      fileName: string
+   },
+
    role: UserRole
 }

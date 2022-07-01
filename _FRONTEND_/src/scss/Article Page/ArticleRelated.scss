@@ -41,6 +41,9 @@ section.related-topics-section {
                align-items: flex-end;
                justify-content: space-between;
                width: max-content;
+               margin-left: .5em;
+               
+               h5 { white-space: nowrap; }
 
                div.tags {
                   width: 100%;
@@ -98,12 +101,13 @@ section.related-topics-section {
          width: 20%;
          min-width: 110px;
          overflow: hidden;
-         background: red;
+         background: #252525;
          position: relative;
 
          img {
             height: 100%;
-            @include Absolute50Translate;
+            width: 100%;
+            object-fit: cover;
          }
       }
    }

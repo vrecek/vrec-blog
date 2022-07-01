@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputDivType } from '../../../interfaces/LoginRegisterInterface'
 
-const InputDiv = ({ type, labelText, cname, idFor, keyDown }: InputDivType) => {
+const InputDiv = ({ type, labelText, cname, idFor, keyDown, defValue }: InputDivType) => {
    const blank = () => {}
 
    return (
@@ -11,13 +11,13 @@ const InputDiv = ({ type, labelText, cname, idFor, keyDown }: InputDivType) => {
             idFor
             ?
                <>
-                  <input onChange={ keyDown } id={ idFor ?? '' } type={ type } />
+                  <input defaultValue={ defValue ?? '' } onChange={ keyDown } id={ idFor ?? '' } type={ type } />
                   <label spellCheck='false' htmlFor={ idFor ?? 'NULL' }>{ labelText }</label>           
                </>
             :
                <>
                   <label>{ labelText }</label>
-                  <input onChange={ keyDown ?? blank } spellCheck='false' type={ type } />
+                  <input defaultValue={ defValue ?? '' } onChange={ keyDown ?? blank } spellCheck='false' type={ type } />
                </>
          }
 

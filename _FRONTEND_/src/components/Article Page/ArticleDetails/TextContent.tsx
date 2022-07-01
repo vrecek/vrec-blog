@@ -1,13 +1,30 @@
 import React from 'react'
 
-const TextContent = ({ children }: { children: string }) => {
+const TextContent = ({ children, imgSrcs }: { children: string, imgSrcs: string[] }) => {
+   const textRef = React.useRef<HTMLParagraphElement>(null)
+   // TD: BREAK LINES ENTER
+   React.useEffect(() => {
+      let copyTxt = children.replaceAll('[:b]', '<span class="bold">').replaceAll('[b:]', '</span>')
+                        .replaceAll('[:h]', '<span class="header">').replaceAll('[h:]', '</span>')
+                        .replaceAll('[:clr]', '<span class="color">').replaceAll('[clr:]', '</span>')
+                        .replaceAll('[:box]', '<span class="box">').replaceAll('[box:]', '</span>')
+                        .replaceAll('\n', '<br/>')
+
+      let num: number = 0
+      copyTxt = copyTxt.replace(/\[:img\]\[img:\]/g, () => {
+         if(!(num in imgSrcs)) return '<br/>'
+
+         ++num
+
+         return `<span class='image'><img src='${ imgSrcs[num - 1] }' alt='image'/></span>`
+      });
+
+      textRef.current!.innerHTML = copyTxt
+   }, [])
+   
    return (
-      <p className='text'>
-         m molestiae, placeat <span className='color'>voluptates</span> <span className="bold">voluptas</span> nobis voluptate! Enim!<span className='header'>Lorem ipsum dolor</span>, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! <span className='box'>Illo saepe, quas illum quaerat, dicta consequatur <br/> Illo saepe, quas illum quaerat, dicta consequatur</span> 
-         <span className="image">
-            <img src='https://icdn.2cda.pl/obr/oryginalne/14762d16327ca329296e80b7aa6c214a.jpg' alt='article image' />
-         </span>
-         Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam.<br/><br/> Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam. Illo saepe, quas illum quaerat, dicta consequatur voluptatem molestiae, placeat voluptates voluptas nobis voluptate! Enim!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis corrupti maiores tempore? Libero, recusandae quisquam.
+      <p ref={ textRef } className='text'>
+         {/* innerHTML */}
       </p>
    )
 }

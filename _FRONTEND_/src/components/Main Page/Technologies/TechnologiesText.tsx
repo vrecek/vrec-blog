@@ -4,8 +4,8 @@ const TechnologiesText = () => {
    return (
       <section className='text'>
 
-         <h1>Lorem ipsum dolor amet</h1>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex omnis ipsam ullam pariatur soluta labore maxime laudantium harum tempora ea, ut sit nobis recusandae.</p>
+         <h1>Check popular topics</h1>
+         <p>Browse articles from your favourite and most interesting topics. Dont forget to explore other popular tags.</p>
 
       </section>
    )

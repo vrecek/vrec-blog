@@ -27,6 +27,12 @@ $fullHeight: calc(100vh - 60px);
 
 /**************************/
 
+/* OBJECT FIT IMAGE */
+@mixin Fit {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
 
 /* ABSOLUTE WITH PARAMS */
 @mixin Absolute($left, $top) {

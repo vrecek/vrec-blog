@@ -4,13 +4,13 @@ import Button from '../../../REUSABLE/Button'
 import FigureImage from '../../../REUSABLE/FigureImage'
 import UserInformation from '../UserInformation'
 
-const CommentForm = ({ submitAction, username }: PostCommentFormType) => {
+const CommentForm = ({ submitAction, username, userAvatar }: PostCommentFormType) => {
    return (
       <form onSubmit={ submitAction }>
 
          <section className="user-info">
 
-            <FigureImage source='https://wallpaperaccess.com/full/13192.jpg' altTxt='avatar' />
+            <FigureImage source={ userAvatar } altTxt='avatar' />
 
             <UserInformation username={ username } />
 
