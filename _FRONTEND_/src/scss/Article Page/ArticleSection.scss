@@ -180,7 +180,7 @@ main.article-section-container {
          p.text {     
             color: #a5a5a5;
             font-weight: 500;
-            line-height: 3em;
+            line-height: 1.8em;
 
             &:not(span) {
                @include ClampFont(.8, 1.5, .9);
@@ -194,7 +194,7 @@ main.article-section-container {
                &.header {
                   display: block;
                   @include ClampFont(1.25, 2.5, 1.5);
-                  margin: .75em 0 .25em 0;
+                  margin: 1.75em 0 1.25em 0;
                   font-weight: 700;
                   color: $color-white;
                }

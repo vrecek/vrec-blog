@@ -2,7 +2,8 @@ import React from 'react'
 import { BiHome } from 'react-icons/bi'
 import { FiUserCheck, FiUserPlus, FiPhoneCall, FiLogOut } from 'react-icons/fi'
 import { HiOutlineInformationCircle } from 'react-icons/hi'
-import { MdOutlineArticle, MdOutlineAdminPanelSettings } from 'react-icons/md'
+import { MdOutlineAdminPanelSettings } from 'react-icons/md'
+import { CgProfile } from 'react-icons/cg'
 import NavigationHiddenMenuLi from './NavigationHiddenMenuLi'
 import '../../../css/NavigationHiddenMenu.css'
 import NavigationHiddenMenuIcons from './NavigationHiddenMenuIcons'
@@ -34,7 +35,6 @@ const NavigationHiddenMenu = ({ setReference, user }: HiddenMenuType) => {
          <aside className='layout-hidden-menu'>
             <ul>
                <NavigationHiddenMenuLi string='Homepage' route='/' icon={ <BiHome /> } />
-               <NavigationHiddenMenuLi string='Articles' route='/' icon={ <MdOutlineArticle /> } />
 
                <li className='separate'></li>
                
@@ -56,6 +56,8 @@ const NavigationHiddenMenu = ({ setReference, user }: HiddenMenuType) => {
                                  route={ process.env.REACT_APP_ADMIN_ROUTE }
                               />
                         }
+
+                        <NavigationHiddenMenuLi string='Profile' route='/profile' icon={ <CgProfile /> } />
 
                         <NavigationHiddenMenuLi 
                            string='Log out' 

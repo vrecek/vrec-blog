@@ -141,8 +141,79 @@ main.user-profile {
          width: 55%;
    
          div.wrap {
+            position: relative;
+
             &:not(:last-child) {
                margin-bottom: 4em;
+            }
+
+            form {
+               padding: 1em;
+               background: #252525;
+               position: relative;
+               margin-top: .5em;
+
+               h5.result {
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  color: $color-grey-light;
+                  font-weight: 600;               
+               }
+
+               div {
+                  @include Flex-sb-none;
+
+                  input {
+                     background: none;
+                     width: 47%;
+                     padding: .5em 0;
+                     outline: 0;
+                     border: 0;
+                     color: $color-white;
+                     border-bottom: 2px solid rgb(9, 180, 9);
+
+                     &::placeholder {
+                        font-family: 'IBM Plex Mono', monospace;
+                        font-weight: 500;
+                        @include ClampFont(.65, 3, .75);
+                        color: $color-white;
+                        opacity: .6;
+                     }
+                  }
+               }
+
+               button {
+                  margin-top: 1em;
+                  border-radius: .15em;
+                  outline: 0;
+                  border: 1px solid $color-grey-light;
+                  background: none;
+                  color: $color-white;
+                  font-weight: 600;
+                  font-family: 'Poppins', sans-serif;
+                  padding: .75em 0;
+                  width: clamp(90px, 25vw, 120px);
+                  text-transform: uppercase;
+                  @include ClampFont(.65, 3, .85);
+                  letter-spacing: 2px;
+                  cursor: pointer;
+                  transition: .3s;
+
+                  &:hover {
+                     background: #353535;
+                  }
+               }
+
+               @media (max-width: 480px) {
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  z-index: 9;
+                  width: 95vw;
+               }
             }
 
             h2 {
@@ -157,6 +228,7 @@ main.user-profile {
                   height: 20px;
                   aspect-ratio: 1;
                   margin-left: .3em;
+                  pointer-events: none;
    
                   svg {
                      @include FullSize;
@@ -171,6 +243,7 @@ main.user-profile {
                   text-shadow: none;
                   font-size: .85rem;
                   cursor: pointer;
+                  width: max-content;
                   transition: .3s;
    
                   &:hover {
@@ -196,7 +269,10 @@ main.user-profile {
                }
             }
 
-            input { color: $color-white; }
+            input { 
+               color: $color-white; 
+               @include ClampFont(.65, 3, .85); 
+            }
 
             button {
                display: block;

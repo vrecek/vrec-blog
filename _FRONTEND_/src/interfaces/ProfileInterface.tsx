@@ -19,5 +19,6 @@ export interface DivWrapType {
    cname?: string,
    title: string,
    content: string | number,
-   additional?: JSX.Element
+   additional?: JSX.Element,
+   clickAction?: React.MouseEventHandler
 }

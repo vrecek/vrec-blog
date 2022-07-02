@@ -70,7 +70,16 @@ const CommentSection = ({ comments, artId, hook }: CommentSectionType) => {
       div.appendChild(h42)
 
       article2.className = 'text'
-      p.textContent = text
+
+      let regex: string = ''
+      const illegal: string[] = ['<', '>', ';', '/']
+
+      for(let x of illegal) regex += `(${ x })|`
+      regex = regex.slice(0, regex.length - 1)
+
+      const regexp: RegExp = new RegExp(regex, 'g')
+
+      p.textContent = text.replace(regexp, ' ')
       article2.appendChild(p)
 
       section.appendChild(figure)

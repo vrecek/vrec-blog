@@ -2,7 +2,7 @@ import React from 'react'
 
 const TextContent = ({ children, imgSrcs }: { children: string, imgSrcs: string[] }) => {
    const textRef = React.useRef<HTMLParagraphElement>(null)
-   // TD: BREAK LINES ENTER
+
    React.useEffect(() => {
       let copyTxt = children.replaceAll('[:b]', '<span class="bold">').replaceAll('[b:]', '</span>')
                         .replaceAll('[:h]', '<span class="header">').replaceAll('[h:]', '</span>')
@@ -19,7 +19,7 @@ const TextContent = ({ children, imgSrcs }: { children: string, imgSrcs: string[
          return `<span class='image'><img src='${ imgSrcs[num - 1] }' alt='image'/></span>`
       });
 
-      textRef.current!.innerHTML = copyTxt
+      textRef.current!.innerHTML = `${ copyTxt }`
    }, [])
    
    return (

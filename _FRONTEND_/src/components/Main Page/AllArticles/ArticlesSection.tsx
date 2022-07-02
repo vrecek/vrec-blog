@@ -27,7 +27,7 @@ const ArticlesSection = ({ articles, latest, popular }: HomepageArticleContainer
                ))
             }
 
-            <ArticlesPagination />
+            {/* <ArticlesPagination /> */}
 
          </section>
       </article>

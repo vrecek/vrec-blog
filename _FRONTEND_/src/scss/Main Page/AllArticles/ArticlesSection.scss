@@ -18,19 +18,24 @@ main.search-page-container {
       @include Flex-c-c;
       flex-direction: column;
 
+      &.padding-aside { padding-left: clamp(.5em, 4vw, 4em); }
+
       div {
          margin-bottom: 5em;
+         width: 100%;
+
+         &.no-h2 {
+            h2 { text-align: center; }
+         }
 
          h2 {
             color: $color-white;
             margin-bottom: .5em;
             font-weight: 600;
             font-size: 1.3rem;
-            padding-left: 1.5em;
          }
 
          ul {
-            padding-left: 2em;
             color: $color-grey-light;
             list-style: none;
 

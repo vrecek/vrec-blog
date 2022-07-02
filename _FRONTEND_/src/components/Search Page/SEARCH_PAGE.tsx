@@ -59,7 +59,11 @@ const SEARCH_PAGE = () => {
                      ?
                         <>
                            <aside>
-                              <ArticlesAsideSection title='Related searches' links={ articles.related } />
+                              <ArticlesAsideSection 
+                                 cname={ articles?.related?.length > 0 ? '' : 'no-h2' } 
+                                 title='Related searches' 
+                                 links={ articles.related } 
+                              />
                            </aside>
 
                            <SearchContainer articles={ articles.allArticles } />

@@ -4,7 +4,7 @@ import ArticlesAsideSection from './ArticlesAsideSection'
 
 const ArticlesAside = ({ latest, popular }: HomepageAside) => {
    return (
-      <aside>
+      <aside className='padding-aside'>
          <ArticlesAsideSection title='Latest topics' links={ latest } />
 
          <ArticlesAsideSection title='Popular' links={ popular } />

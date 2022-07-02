@@ -7,6 +7,8 @@ import ArticleTags from './ArticleTags'
 const OneArticle = ({ text, title, tags, published, category, id }: ArticleContainerType) => {
    const n = useNavigate()
 
+   text = text.replaceAll('[:img][img:]', ' ').replaceAll('[:h]', ' ').replaceAll('[h:]', ' ').replaceAll('[:b]', ' ').replaceAll('[b:]', ' ')
+
    return (
       <article className='article' onClick={ () => n(`/article/${ id }`) }>
          <section className='tags'>

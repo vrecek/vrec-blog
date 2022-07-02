@@ -46,6 +46,79 @@ const LeftSection = ({ user }: User) => {
       }
    }
 
+   const createPasswordInput = (submitFunc: (t: HTMLFormElement) => void): HTMLElement => {
+      const form = document.createElement('form')
+      form.onsubmit = (e) => {
+         e.preventDefault()
+         
+         const t = e.target as HTMLFormElement
+         submitFunc(t)
+      }
+
+      const div = document.createElement('div')
+
+      const [pass, conf] = [...Array(2)].map(x => {
+         const inp = document.createElement('input')
+         inp.type = 'password'
+
+         return inp
+      })
+      pass.placeholder = 'New password'
+      conf.placeholder = 'Confirm password'
+
+      div.appendChild(pass)
+      div.appendChild(conf)
+
+      const btn = document.createElement('button')
+      btn.textContent = 'Submit'
+
+      form.appendChild(div)
+      form.appendChild(btn)
+
+      return form
+   }
+   const changePass = async (e: React.MouseEvent) => {
+      const t = e.target as HTMLElement
+      const parent = t.parentElement as HTMLElement
+
+      const parentForm = Array.from(parent.children).filter(x => x.tagName === 'FORM')
+
+      if(parentForm.length > 0) {
+         parentForm[0].remove()
+         return
+      }
+
+      parent.appendChild(createPasswordInput(async (t) => {
+         const l = new LoadingCss('loading')
+         l.append(t)
+         
+         const h5 = document.createElement('h5')
+         h5.className = 'result'
+
+         const inputs = Array.from(t.elements as HTMLCollectionOf<HTMLInputElement>)
+
+         try {
+            const [passVal, confVal] = inputs.map(x => x.value)
+
+            await Fetches.mix(`${ process.env.REACT_APP_API_USER_CHANGE_PASSWORD }/${ user._id }`, 'PATCH', {
+               newPass: passVal,
+               confPass: confVal
+            })
+
+            h5.textContent = 'Successfully changed password'
+            inputs.map(x => x.value = '')
+
+            window.location.pathname = '/'
+
+         }catch(err: any) {
+            h5.textContent = err.json?.msg ?? 'Could not change password'
+            l.remove()
+            setTimeout(() => h5.remove(), 2500)
+
+         }finally { t.appendChild(h5) }
+      }))
+   }
+
    return (
       <section className='first'>
 
@@ -53,6 +126,7 @@ const LeftSection = ({ user }: User) => {
          <LeftDivWrap title='E-mail address' content={ `user.mail@dassad.asd.comwindows` } />
 
          <LeftDivWrap 
+            clickAction={ changePass }
             cname='pass'
             title='Password' 
             content='Change password' 

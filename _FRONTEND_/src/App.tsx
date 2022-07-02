@@ -81,6 +81,7 @@ function App() {
                  <Footer />
      
                  <ArrowTop />
+                 
                   {
                      !isCookieSet && <CookieReminder />
                   }

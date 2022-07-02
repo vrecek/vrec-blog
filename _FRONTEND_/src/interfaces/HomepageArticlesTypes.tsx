@@ -66,7 +66,8 @@ export interface HomepageAside {
 
 export interface ArticlesAsideType {
    title: string,
-   links: ArticleLinks[]
+   links: ArticleLinks[],
+   cname?: string
 }
 
 export interface HomepageArticleContainer {

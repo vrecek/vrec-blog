@@ -2,11 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArticlesAsideType } from '../../../interfaces/HomepageArticlesTypes'
 
-const ArticlesAsideSection = ({ title, links }: ArticlesAsideType) => {
+const ArticlesAsideSection = ({ title, links, cname }: ArticlesAsideType) => {
    const n = useNavigate()
 
    return (
-      <div>
+      <div className={ cname ?? '' }>
          <h2>{ title }</h2>
          <ul>
             {
