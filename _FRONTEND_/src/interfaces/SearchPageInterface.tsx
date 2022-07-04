@@ -1,14 +1,19 @@
 import ArticleType, { CommentType } from "./ArticleType";
-import { ArticleLinks } from "./ReusableTypes";
+import { ArticleLinks, ComponentHookType } from "./ReusableTypes";
+
+export type SearchType = 'b' | 'c' | 't'
 
 export interface SearchArticlesJSON {
    allArticles: ArticleType[],
    related: ArticleLinks[],
-   finished: boolean
+   finished: boolean,
+   count: number
 }
 
 export interface SearchContainerType {
    articles?: ArticleType[],
+   countArticles: number,
+   setState: React.Dispatch<React.SetStateAction<ComponentHookType<SearchArticlesJSON>>>
 }
 
 export interface ArticlePageRelated {

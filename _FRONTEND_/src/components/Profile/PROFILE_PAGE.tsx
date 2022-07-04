@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../App'
 import '../../css/UserProfile.css'
 import LoadingBlank from '../Article Page/LoadingBlank'
-import FigureImage from '../REUSABLE/FigureImage'
 import Header from './Header'
 import LeftSection from './LeftSection'
 import AsideSection from './AsideSection'
@@ -14,6 +13,7 @@ const PROFILE_PAGE = () => {
    window.scrollTo(0, 0)
    
    const user = React.useContext(UserContext)
+
    const n = useNavigate()
 
    React.useEffect(() => {

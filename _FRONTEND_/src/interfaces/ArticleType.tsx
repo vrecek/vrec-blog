@@ -1,6 +1,6 @@
 interface ImageType {
    url: string,
-   fileName: string
+   key: string
 }
 
 export interface CommentType {

@@ -1,5 +1,5 @@
 import ArticleType from "./ArticleType"
-import { ArticleLinks } from "./ReusableTypes"
+import { ArticleLinks, ComponentHookType } from "./ReusableTypes"
 
 export interface Categories {
    backend: string,
@@ -47,7 +47,9 @@ export interface HomepageArticlesJSON {
       [P in keyof Categories]: CategoryInfo
    },
 
-   allArticles: ArticleType[]
+   allArticles: ArticleType[],
+
+   articleCount: number
 }
 
 export interface ArticleContainerType {
@@ -73,5 +75,7 @@ export interface ArticlesAsideType {
 export interface HomepageArticleContainer {
    articles: ArticleType[], 
    latest: ArticleLinks[],
-   popular: PopularArticles[]
+   popular: PopularArticles[],
+   setState: React.Dispatch<React.SetStateAction<ComponentHookType<HomepageArticlesJSON>>>,
+   articleCount: number
 }

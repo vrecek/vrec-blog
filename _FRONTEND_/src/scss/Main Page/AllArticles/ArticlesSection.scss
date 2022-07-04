@@ -70,34 +70,6 @@ main.search-page-container {
          }
       }
 
-      section.pagination {
-         width: 100%;
-         background: #252525;
-         @include Flex-c-c;
-
-         div {
-            @include Clamp(30, 8, 45);
-            background: #121212;
-            @include Flex-c-c;
-            border-radius: .25em;
-            color: $color-white;
-            margin: 0 .25em;
-            font-weight: 600;
-            cursor: pointer;
-            @include ClampFont(.75, 4, 1);
-            transition: .3s;
-
-            &.active {
-               pointer-events: none;
-               background: rgb(212, 58, 3);
-            }
-
-            &:hover {
-               background: royalblue;
-            }
-         }
-      }
-
       article.article {
          background: #202020;
          margin-bottom: 3em;

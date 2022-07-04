@@ -5,7 +5,7 @@ import ArticlesAsideSection from '../Main Page/AllArticles/ArticlesAsideSection'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Fetches from '../../functions/Fetches'
 import { ComponentHookType } from '../../interfaces/ReusableTypes'
-import { SearchArticlesJSON } from '../../interfaces/SearchPageInterface'
+import { SearchArticlesJSON, SearchType } from '../../interfaces/SearchPageInterface'
 import { LoadingCss } from '../../functions/Loading'
 import SearchContainer from './SearchContainer'
 
@@ -15,8 +15,6 @@ const SEARCH_PAGE = () => {
    const location = useLocation()
 
    window.scrollTo(0, 0)
-
-   type SearchType = 'b' | 'c' | 't'
 
    React.useEffect(() => {
       const init = async () => {
@@ -31,12 +29,13 @@ const SEARCH_PAGE = () => {
          try {
             l.append(document.body)
 
-            const data = await Fetches.mix<SearchArticlesJSON>(`${ process.env.REACT_APP_API_ARTICLE_SEARCH }/${ type }/${ query }`, 'GET')
+            const data = await Fetches.mix<SearchArticlesJSON>(`${ process.env.REACT_APP_API_ARTICLE_SEARCH }/${ type }/${ query }/1`, 'GET')
 
             setArticles({
                allArticles: data.json.allArticles,
                related: data.json.related,
-               finished: true
+               finished: true,
+               count: data.json.count
             })
 
          }catch(err: any) {
@@ -66,10 +65,10 @@ const SEARCH_PAGE = () => {
                               />
                            </aside>
 
-                           <SearchContainer articles={ articles.allArticles } />
+                           <SearchContainer setState={ setArticles } countArticles={ articles.count } articles={ articles.allArticles } />
                         </>
                      :
-                     <SearchContainer articles={ articles.allArticles } />
+                     <SearchContainer setState={ setArticles } countArticles={ articles.count } articles={ articles.allArticles } />
                   }
                </>
             :

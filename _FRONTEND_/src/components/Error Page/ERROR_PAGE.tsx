@@ -20,6 +20,8 @@ const ERROR_PAGE = () => {
       case 500: defaultMsg = 'Internal server error'; break;
       case 404: defaultMsg = 'Not found'; break;
       case 401: defaultMsg = 'Unauthorized'; break;
+      case 403: defaultMsg = 'Forbidden'; break;
+      case 400: defaultMsg = 'Bad request'; break;
       default: defaultMsg = 'Unkown'
    }
    

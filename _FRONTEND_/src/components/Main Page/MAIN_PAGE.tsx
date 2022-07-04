@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Fetches from '../../functions/Fetches'
 import { LoadingCss } from '../../functions/Loading'
+import Pagination from '../../functions/PaginationClass'
 import { HomepageArticlesJSON } from '../../interfaces/HomepageArticlesTypes'
 import { ComponentHookType } from '../../interfaces/ReusableTypes'
 import ArticlesSection from './AllArticles/ArticlesSection'
@@ -20,17 +21,20 @@ const MAIN_PAGE = () => {
       const init = async () => {
          const l = new LoadingCss('loading-fixed')
          l.append(document.body)
+         
+         const uri: string = `${ process.env.REACT_APP_API_ARTICLE_GET_ALL_HOMEPAGE }/1`
 
          try {
-            const data = await Fetches.mix<HomepageArticlesJSON>(process.env.REACT_APP_API_ARTICLE_GET_ALL_HOMEPAGE!, 'GET')
-            const { allArticles, categoriesInfo, lastUpdated, latest, popular } = data.json
+            const data = await Fetches.mix<HomepageArticlesJSON>(uri, 'GET')
+            const { allArticles, categoriesInfo, lastUpdated, latest, popular, articleCount } = data.json
 
             setArticles({
                allArticles,
                categoriesInfo,
                popular,
                latest,
-               lastUpdated
+               lastUpdated,
+               articleCount
             })
 
          }catch(err: any) {
@@ -56,7 +60,13 @@ const MAIN_PAGE = () => {
             <>
                <Cards categoryDetails={ articles.categoriesInfo } lastDetails={ articles.lastUpdated } />
 
-               <ArticlesSection popular={ articles.popular } latest={ articles.latest } articles={ articles.allArticles } />
+               <ArticlesSection 
+                  popular={ articles.popular } 
+                  latest={ articles.latest } 
+                  articles={ articles.allArticles } 
+                  setState={ setArticles }
+                  articleCount={ articles.articleCount }
+               />
             </>
          }
          

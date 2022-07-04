@@ -21,13 +21,12 @@ export default class Fetches {
 
       let json: T
       let msg: string = res.statusText
-      const code: number = res.status
 
       try { json = await res.json() }
       catch(err) { json = null as any }
 
       const returnObj = {
-         code,
+         code: res.status,
          msg,
          json
       }

@@ -60,6 +60,7 @@ function App() {
                   <Routes>
      
                      <Route path='/' element={ <MAIN_PAGE /> } />
+                     <Route path='/page/:nr' element={ <MAIN_PAGE /> } />
      
                      <Route path='/profile' element={ <PROFILE_PAGE /> } />
      
